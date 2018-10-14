@@ -1,0 +1,33 @@
+.row {
+  margin: 45px auto;
+}
+
+a {
+  background-color: #BEBEBE33;
+  padding-top: 10px;
+  color: black;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-left: 25px;
+}
+
+h3 {
+  font-weight: 300;
+}
+
+td, th {
+  font-size: 21px;
+  border-bottom: 1px solid #ddd;
+  padding-top: 15px;
+}
+
+button {
+  width: inherit;
+  height: 60px;
+  border-radius: 5px;
+  font-size: 21px;
+  font-weight: 400;
+  box-shadow: 3px 3px 3px grey;
+  color: black;
+}

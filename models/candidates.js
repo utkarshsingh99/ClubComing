@@ -51,6 +51,6 @@ var CandidateSchema = new mongoose.Schema({
     }
 });
 
-var Candidate = mongoose.model('Candidate', CandidateSchema);
+var Candidates = mongoose.model("Candidates", CandidateSchema);
 
-module.exports = {Candidate};
+module.exports = {Candidates};

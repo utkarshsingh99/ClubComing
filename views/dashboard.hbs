@@ -2,9 +2,42 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Welcome {{username}}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <title>{{clubName}}</title>
   </head>
   <body>
-      <h1>Hello Mr/Mrs. {{username}}</h1>
+    <div class="container">
+      <div class="row tabs">
+        <div class="col-md-3">
+          <button class="tab-buttons" style="background-color: blue;" id="all">All</button>
+        </div>
+        <div class="col-md-3">
+          <button class="tab-buttons" style="background-color: green;" id="selected">Selected</button>
+        </div>
+        <div class="col-md-3">
+          <button class="tab-buttons" style="background-color: yellow;" id="shortlisted">Shortlisted</button>
+        </div>
+        <div class="col-md-3">
+          <button class="tab-buttons" style="background-color: red;" id="rejected">Rejected</button>
+        </div>
+      </div>
+      <div class="container" id="candidates">
+        <!-- List Data of Candidates -->
+      </div>
+    </div>
   </body>
+  <script type="text/javascript" src="/js/dashboard.js"></script>
 </html>
+
+<!-- <div class="container contain">
+  <div class="row centerContent">
+    <form>
+      <input type="text" name="" value="" placeholder="Search Roll Number" id="search" align="middle">
+    </form>
+    <button type="button" name="button" id="initSearch">Search</button>
+  </div>
+</div>
+  <div class="container" id="container">
+  </div> -->
