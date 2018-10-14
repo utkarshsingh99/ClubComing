@@ -1,11 +1,13 @@
 const express = require('express');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var _ = require('lodash');
+const bodyParser = require('body-parser');
+const _ = require('lodash');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-var cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const path = require('path');
+const fs = require('fs');
 
 var {Candidates} = require('./models/candidates');
 var {Club} = require('./models/club');
@@ -28,6 +30,7 @@ app.get('/', (req, res) => {
 
 app.post('/login', authenticate, (req, res) => {
     res.cookie('x-auth', req.token, { maxAge: 900000, httpOnly: true });
+    console.log(req.body);
     res.render('dashboard', {
       clubName: req.user.name
     });
@@ -39,8 +42,18 @@ app.get('/dashboard', fetchClubInfo, (req, res) => {
   });
 });
 
-app.get('/candidate', (req, res) => {             //  add fetchClubInfo middleware
-  res.render('candidateProfile');
+app.get('/candidate/:clubname/:roll', fetchClubInfo, (req, res) => {             //  add fetchClubInfo middleware
+  console.log(req.body);
+  var clubName = req.params.clubname;
+  var roll = req.params.roll;
+  var candidate;
+  Candidates.findOne({
+    club: clubName,
+    rollNumber: roll
+  }).then((cand) => {
+    console.log(cand);
+    res.render('candidateProfile', cand);
+  });
 });
 
 app.post('/postcandidate', (req, res) => {
@@ -57,21 +70,40 @@ app.post('/postcandidate', (req, res) => {
 });
 
 app.get('/testjsondata', (req, res) => {
-  var body=[{
-    name: "Utkarsh Singh",
-    rollNum: "IIITU17101",
-    rating: "",
-    branch: "Computer Science and Engineering",
-    status: "accepted"
-  }, {
-    name: "Tanuj Jagad",
-    rollNum: "17mi559",
-    rating: "10",
-    branch: "Mechanical",
-    status: "rejected"
-  }];
-  res.send(JSON.stringify(body));
+  console.log(`Inside json datas`, req.query, req.query.name);
+  Candidates.find({
+    club: req.query.name
+  }).then((candidates) => {
+    console.log(`Found Candidates`, candidates);
+    res.send(candidates)
+  }).catch((e) => {
+    res.send(`Sorry, our servers are having a problem`);
+  });
 });
+
+app.post('/statusChange', (req, res) => {
+  //Query to update status Change
+  Candidates.findOneAndUpdate({
+    rollNumber: req.body.rollNumber,
+    club: req.body.club
+  },
+  { $set: {candidateStatus: req.body.candidateStatus}},
+  {new: true}).then((user) => {
+    res.send(user);
+  });
+});
+
+app.post('/scoreChange', (req, res) => {
+  console.log(req.body);
+  Candidates.findOneAndUpdate({
+    rollNumber: req.body.rollNumber,
+    club: req.body.club
+  },
+  { $set: {rating: req.body.rating, comments: req.body.comments}},
+  {new: true}).then((user) => {
+    res.send(user);
+  });
+})
 
 // LaTeX code by Kartikey
 app.get('/api/getpdf/:club/:id', (req, res) => {

@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 var {Club} = require('./../models/club');
+var {app} = require('./../server');
 
 var generateAuthToken = (user) => {
   var user = user;
@@ -19,12 +20,13 @@ var generateAuthToken = (user) => {
 };
 
 var authenticate = (req, res, next) => {
-  var user1 = {
-    name: req.body.name,
-    password: req.body.password
-  };
-  Club.findOne({name: user1.name}).then((user) => {
-    var verifyPass = bcrypt.compare(user1.password, user.password, (err, res) => {
+    var name = req.body.name;
+    var password = req.body.password;
+    console.log(name);
+  Club.findOne({name}).then((user) => {
+    console.log(`Found User: ${user}`);
+    var verifyPass = bcrypt.compare(password, user.password, (err, res) => {
+      console.log(`Inside password checking: ${res}`);
       var token = generateAuthToken(user);
       if(res) {
         req.token = token;
@@ -35,8 +37,7 @@ var authenticate = (req, res, next) => {
       }
     });
   }).catch((e) => {
-    console.log(e);
-    next();
+    res.sendStatus(401);
   });
 };
 

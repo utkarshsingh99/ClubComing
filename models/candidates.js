@@ -2,6 +2,13 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 var CandidateSchema = new mongoose.Schema({
+    club: {
+      type: String,
+      required: true
+    },
+    candidateStatus: {
+      type: String
+    },
     rating: {
       type: Number
     },
