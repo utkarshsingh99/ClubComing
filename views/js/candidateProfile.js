@@ -31,6 +31,16 @@ jQuery('#shortlist').on('click', function () {
   });
 });
 
+jQuery('#undo').on('click', function () {
+  jQuery.post('/statuschange', {
+    club,
+    rollNumber,
+    candidateStatus: 'Interviewed'
+  }, function () {
+    jQuery('#status')[0].textContent = 'Interviewed';
+  });
+});
+
 jQuery('#submitScore').on('click', function () {
   console.log(`Click`);
   jQuery.post('/scorechange', {

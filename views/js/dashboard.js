@@ -1,5 +1,5 @@
 $(document).ready(callServer);
-
+callServer();
 var selected = [], rejected = [], shortlisted = [], all = [];
 var clubData = {
   name: jQuery('#clubName')[0].text
@@ -17,7 +17,7 @@ function renderHTML(candidate) {
     </div>
     <div class="col-md-6" style="text-align: right">
       <h3>${candidate.rating}</h3>
-      <h4>${candidate.branch}</h4>
+      <h4>${candidate.interviewStatus}</h4>
     </div>
   </div></a>`
   candidatesData.append(string);
@@ -26,16 +26,17 @@ function renderHTML(candidate) {
 console.log(clubData);
 
 function callServer() {
-  jQuery.getJSON('/testjsondata', clubData, function(data) {
+  jQuery.getJSON('/fetchcandidates', clubData, function(data) {
     data.forEach(function (candidate) {
       all.push(candidate);
       renderHTML(candidate);
-      switch (candidate.status) {
-        case 'accepted': selected.push(candidate);
+      console.log(candidate.candidateStatus);
+      switch (candidate.candidateStatus) {
+        case 'Accepted': selected.push(candidate);
           break;
-        case 'rejected': rejected.push(candidate);
+        case 'Rejected': rejected.push(candidate);
           break;
-        case 'shortlisted': shortlisted.push(candidate);
+        case 'Shortlisted': shortlisted.push(candidate);
           break;
       }
     });
@@ -67,5 +68,13 @@ jQuery('#all').on('click', function () {
   candidatesData.html("");
   all.forEach(function (selectedCand) {
     renderHTML(selectedCand);
+  });
+});
+
+jQuery('#signOut').on('click', function () {
+  console.log(`Signing Out`);
+  jQuery.get('/signedout', function () {
+    console.log(`Changing Location`);
+    window.location.pathname = '/';
   });
 });

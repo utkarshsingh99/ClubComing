@@ -1,11 +1,11 @@
 const express = require('express');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const _ = require('lodash');
+var bodyParser = require('body-parser');
+var _ = require('lodash');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 const path = require('path');
 const fs = require('fs');
 
@@ -15,7 +15,7 @@ var {authenticate} = require('./middleware/authenticate');
 var {fetchClubInfo} = require('./middleware/fetchClubInfo');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/ClubComing')
+mongoose.connect('mongodb://localhost:27017/ClubComing', {useNewUrlParser: true, useCreateIndex: true})
 
 var app = express();
 app.set('view engine', 'hbs');
@@ -28,9 +28,29 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.get('/signedout', (req, res) => {
+  var token = req.cookies['x-auth'];
+  Club.findByToken(token).then((club) => {
+    if(!club) {
+      return Promise.reject();
+    }
+
+    Club.findOneAndUpdate({
+      '_id': club._id
+    },
+    {$pull: {
+      tokens: {token}
+    }}).then((club) => {
+      return res.send(200);
+    }).catch((e) => {
+      console.log(`Error`);
+      res.sendStatus(400);
+    })
+  })
+});
+
 app.post('/login', authenticate, (req, res) => {
     res.cookie('x-auth', req.token, { maxAge: 900000, httpOnly: true });
-    console.log(req.body);
     res.render('dashboard', {
       clubName: req.user.name
     });
@@ -38,12 +58,11 @@ app.post('/login', authenticate, (req, res) => {
 
 app.get('/dashboard', fetchClubInfo, (req, res) => {
   res.render('dashboard', {
-    clubName: req.user
+    clubName: req.user.name
   });
 });
 
-app.get('/candidate/:clubname/:roll', fetchClubInfo, (req, res) => {             //  add fetchClubInfo middleware
-  console.log(req.body);
+app.get('/candidate/:clubname/:roll', fetchClubInfo, (req, res) => {
   var clubName = req.params.clubname;
   var roll = req.params.roll;
   var candidate;
@@ -69,37 +88,35 @@ app.post('/postcandidate', (req, res) => {
   });
 });
 
-app.get('/testjsondata', (req, res) => {
-  console.log(`Inside json datas`, req.query, req.query.name);
+app.get('/fetchcandidates', fetchClubInfo, (req, res) => {
   Candidates.find({
     club: req.query.name
   }).then((candidates) => {
-    console.log(`Found Candidates`, candidates);
     res.send(candidates)
   }).catch((e) => {
     res.send(`Sorry, our servers are having a problem`);
   });
 });
 
-app.post('/statusChange', (req, res) => {
+app.post('/statusChange', fetchClubInfo, (req, res) => {
   //Query to update status Change
   Candidates.findOneAndUpdate({
     rollNumber: req.body.rollNumber,
     club: req.body.club
   },
-  { $set: {candidateStatus: req.body.candidateStatus}},
+  { $set: {candidateStatus: req.body.candidateStatus, interviewStatus: 'Interviewed'}},
   {new: true}).then((user) => {
     res.send(user);
   });
 });
 
-app.post('/scoreChange', (req, res) => {
+app.post('/scoreChange', fetchClubInfo, (req, res) => {
   console.log(req.body);
   Candidates.findOneAndUpdate({
     rollNumber: req.body.rollNumber,
     club: req.body.club
   },
-  { $set: {rating: req.body.rating, comments: req.body.comments}},
+  { $set: {rating: req.body.rating, comments: req.body.comments, interviewStatus: 'Interviewed'}},
   {new: true}).then((user) => {
     res.send(user);
   });

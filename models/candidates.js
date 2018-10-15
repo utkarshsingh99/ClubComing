@@ -7,7 +7,12 @@ var CandidateSchema = new mongoose.Schema({
       required: true
     },
     candidateStatus: {
-      type: String
+      type: String,
+      default: 'Unresolved'          // 'Unresolved', 'Selected', 'Rejected', 'Shortlisted'
+    },
+    interviewStatus: {
+      type: String,
+      default: 'Applied'            // 'Applied' or 'Interviewed'
     },
     rating: {
       type: Number

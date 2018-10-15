@@ -30,3 +30,15 @@ h4 {
   margin-top: 50px;
   box-shadow: 3px 3px 3px grey;
 }
+
+a:link, a:visited {
+  color: black;
+}
+
+#signOut {
+  right: 0;
+  top: 0;
+  margin-right: 15px;
+  margin-top: 15px;
+  position: absolute;
+}

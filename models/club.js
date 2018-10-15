@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const jwt = require('jsonwebtoken');
 
 var ClubSchema = new mongoose.Schema({
   name: {
@@ -23,17 +24,15 @@ var ClubSchema = new mongoose.Schema({
   }]
 });
 
-ClubSchema.statics.findByToken = () => {
-  var User = this;
+ClubSchema.statics.findByToken =  function (token) {
+  var Clubs = this;
   var decoded;
-
   try {
     decoded = jwt.verify(token, 'abc123');
   } catch(e) {
     return Promise.reject();
   };
-  console.log(decoded);
-  return User.findOne({
+  return Clubs.findOne({
     '_id': decoded._id,
     'tokens.token': token,
     'tokens.access': 'auth'

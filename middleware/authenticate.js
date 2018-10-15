@@ -1,8 +1,9 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
 var {Club} = require('./../models/club');
-var {app} = require('./../server');
 
 var generateAuthToken = (user) => {
   var user = user;
@@ -20,25 +21,25 @@ var generateAuthToken = (user) => {
 };
 
 var authenticate = (req, res, next) => {
-    var name = req.body.name;
-    var password = req.body.password;
-    console.log(name);
-  Club.findOne({name}).then((user) => {
-    console.log(`Found User: ${user}`);
-    var verifyPass = bcrypt.compare(password, user.password, (err, res) => {
-      console.log(`Inside password checking: ${res}`);
-      var token = generateAuthToken(user);
-      if(res) {
-        req.token = token;
-        req.user = user;
-        next();
-      } else {
-        return Promise.reject();
-      }
-    });
-  }).catch((e) => {
-    res.sendStatus(401);
+  var user1 = {
+    name: req.body.name,
+    password: req.body.password
+  };
+  Club.findOne({name: user1.name}).then((user) => {
+  var verifyPass = bcrypt.compare(user1.password, user.password, (err, res) => {
+    var token = generateAuthToken(user);
+    if(res) {
+      req.token = token;
+       req.user = user;
+       next();
+     } else {
+       return Promise.reject();
+    }
   });
+}).catch((e) => {
+  console.log(`Error: ${e}`);
+  res.sendStatus(401);
+});
 };
 
 module.exports = {authenticate};
