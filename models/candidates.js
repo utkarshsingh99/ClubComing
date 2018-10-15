@@ -42,7 +42,9 @@ var CandidateSchema = new mongoose.Schema({
       required: true,
       unique: true
     },
-    skills: [String],
+    skills: {
+      type: String
+    },
     // skills: {
     //   type: String            // TODO: Add Array in Schema
     // },
@@ -59,6 +61,9 @@ var CandidateSchema = new mongoose.Schema({
       type: String
     },
     Achievements: {
+      type: String
+    },
+    AreasOfInt: {
       type: String
     }
 });

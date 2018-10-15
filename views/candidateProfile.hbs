@@ -32,7 +32,7 @@
       </div>
       <div class="row">
         <div class="col-md-6">
-          <h4 style="font-weight: 300; margin-top: 40px"><a href="#" target="blank">Full CV of {{name}}</a></h4>
+          <h4 style="font-weight: 300; margin-top: 40px"><a href="/api/getpdf/{{club}}/{{rollNumber}}" target="blank">Full CV of {{name}}</a></h4>
         </div>
         <div class="col-md-6">
           <div class="row">
@@ -58,14 +58,10 @@
         <h2>Applied For:</h2>
       </div>
       <div class="row">
-        <table style="width: 100%">
+        <table style="width: 100%" id="table">
           <tr>
             <th>Club Name</th>
             <th style="text-align: right;">Status</th>
-          </tr>
-          <tr>
-            <td>AppTeam</td>
-            <td style="text-align: right;">Rejected</td>
           </tr>
         </table>
       </div>

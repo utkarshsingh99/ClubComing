@@ -53,6 +53,17 @@ jQuery('#submitScore').on('click', function () {
   });
 });
 
+/* Interview data for different clubs */
+jQuery.get('/fetchclubs', {rollNumber}, function (clubs) {
+
+  clubs.forEach(function (club) {
+    var string = `<tr>
+      <td>${club.club}</td>
+      <td style="text-align: right;">${club.candidateStatus}</td>
+    </tr>`;
+    jQuery('#table').append(string);
+  });
+})
 
 /* Slider Code */
 var step = 10;

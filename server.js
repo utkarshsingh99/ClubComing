@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 var cookieParser = require('cookie-parser');
 const path = require('path');
 const fs = require('fs');
+const spawn = require('child_process').spawn;
 
 var {Candidates} = require('./models/candidates');
 var {Club} = require('./models/club');
@@ -70,7 +71,6 @@ app.get('/candidate/:clubname/:roll', fetchClubInfo, (req, res) => {
     club: clubName,
     rollNumber: roll
   }).then((cand) => {
-    console.log(cand);
     res.render('candidateProfile', cand);
   });
 });
@@ -98,6 +98,16 @@ app.get('/fetchcandidates', fetchClubInfo, (req, res) => {
   });
 });
 
+app.get('/fetchclubs', fetchClubInfo, (req, res) => {
+  Candidates.find({
+    rollNumber: req.query.rollNumber
+  }).then((list) => {
+    res.send(list);
+  }).catch((e) => {
+    res.send(`Sorry, our servers are having a problem`);
+  });
+})
+
 app.post('/statusChange', fetchClubInfo, (req, res) => {
   //Query to update status Change
   Candidates.findOneAndUpdate({
@@ -111,7 +121,6 @@ app.post('/statusChange', fetchClubInfo, (req, res) => {
 });
 
 app.post('/scoreChange', fetchClubInfo, (req, res) => {
-  console.log(req.body);
   Candidates.findOneAndUpdate({
     rollNumber: req.body.rollNumber,
     club: req.body.club
@@ -145,16 +154,19 @@ app.listen('3000', () => {
   console.log(`Up`);
 });
 
-//LaTex TEMPLATING
+//LaTex TEMPLATINGlocalhost:3000/api/getpdf/:club/:id
 function makepdf(club, id, res){
-  var ref = firebase.database().ref();
+  // var ref = firebase.database().ref();
   var base_filename = path.join(__dirname, '/generated_pdfs', club+id)
   var pdf_filename = base_filename+'.pdf';
-  ref.on("value", (snapshot, e)=>{
+  Candidates.findOne({
+    club,
+    rollNumber: id
+  }).then((candidate) => {
     var fs = require('fs');
-    var json_obj = snapshot.val()[club][id];
-    json_obj['rollno'] = id;
-    fs.writeFile(base_filename+'.json', JSON.stringify(json_obj), function(err) {});
+    var json_obj = candidate;
+    console.log(candidate);
+    fs.writeFileSync(base_filename+'.json', JSON.stringify(json_obj), function(err) {});
     var prc = spawn('python', ["makepdf.py", base_filename+'.json']);
 
     //noinspection JSUnresolvedFunction
@@ -175,5 +187,7 @@ function makepdf(club, id, res){
         res.sendFile(pdf_filename);
         console.log('process exit code ' + code);
     });
+  }).catch((err) => {
+    console.log(`No Candidate Found`, err);
   });
 }
