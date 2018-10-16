@@ -76,15 +76,15 @@ app.get('/candidate/:clubname/:roll', fetchClubInfo, (req, res) => {
 });
 
 app.post('/postcandidate', (req, res) => {
-  var body = _.pick(req.body, ["name", "rollNumber"]);
-  var clubName = req.body.clubName.toLowerCase().replace(/\s/g, "");
-  body.clubName = clubName;
+  console.log(`Post Request being made`);
+  var body = _.pick(req.body, ["name", "rollNumber", "mobile", "club", "branch", "email", "interviewStatus", "skills", "Achievements", "AreasOfInt", "ques1", "ques2", "ques3", "ques4"]);
 
   var candidates = new Candidates(body);
+  console.log(body);
   candidates.save().then((cand) => {
     res.send(cand);
   }).catch((e) => {
-    res.sendStatus(400).send(e);
+    res.send(e);
   });
 });
 
@@ -129,6 +129,10 @@ app.post('/scoreChange', fetchClubInfo, (req, res) => {
   {new: true}).then((user) => {
     res.send(user);
   });
+});
+
+app.get('/pingcheck', (req, res) => {
+  res.send(`Hello!`);
 })
 
 // LaTeX code by Kartikey

@@ -28,7 +28,7 @@ var CandidateSchema = new mongoose.Schema({
       type: Number            // TODO:  Add Unique and Required key
     },
     email: {
-      type: Number,
+      type: String,
       validate: {
         validator: validator.isEmail,
         message: `{VALUE} is not a valid email`
