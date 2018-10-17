@@ -16,7 +16,7 @@ var {authenticate} = require('./middleware/authenticate');
 var {fetchClubInfo} = require('./middleware/fetchClubInfo');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/ClubComing', {useNewUrlParser: true, useCreateIndex: true})
+mongoose.connect(`mongodb://${argv.be_ip}:80/ClubComing`, {useNewUrlParser: true, useCreateIndex: true})
 
 var app = express();
 app.set('view engine', 'hbs');
