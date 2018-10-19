@@ -17,7 +17,7 @@ var {authenticate} = require('./middleware/authenticate');
 var {fetchClubInfo} = require('./middleware/fetchClubInfo');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://${argv.be_ip}:80/ClubComing`, {useNewUrlParser: true, useCreateIndex: true})
+mongoose.connect('mongodb://localhost:27017/ClubComing', {useNewUrlParser: true, useCreateIndex: true})
 
 var app = express();
 app.set('view engine', 'hbs');
@@ -155,7 +155,7 @@ app.get('/api/getpdf/:club/:id', (req, res) => {
   });
 });
 
-app.listen(8080, argv.fe_ip, () => {
+app.listen(8080, () => {
   console.log(`Up`);
 });
 
