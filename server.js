@@ -9,6 +9,7 @@ var cookieParser = require('cookie-parser');
 const path = require('path');
 const fs = require('fs');
 const spawn = require('child_process').spawn;
+var argv = require('optimist').argv;
 
 var {Candidates} = require('./models/candidates');
 var {Club} = require('./models/club');
@@ -154,7 +155,7 @@ app.get('/api/getpdf/:club/:id', (req, res) => {
   });
 });
 
-app.listen('3000', () => {
+app.listen(8080, () => {
   console.log(`Up`);
 });
 
