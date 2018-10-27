@@ -94,7 +94,7 @@ app.get('/fetchcandidates', fetchClubInfo, (req, res) => {
   }).then((candidates) => {
     res.send(candidates)
   }).catch((e) => {
-    res.send(`Sorry, our servers are having a problem`);
+    res.send(`Sorry, our servers are having a problem with making your request`);
   });
 });
 
@@ -104,7 +104,7 @@ app.get('/fetchclubs', fetchClubInfo, (req, res) => {
   }).then((list) => {
     res.send(list);
   }).catch((e) => {
-    res.send(`Sorry, our servers are having a problem`);
+    res.send(`Sorry, our servers are having a problem with making your request`);
   });
 })
 

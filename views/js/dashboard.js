@@ -32,7 +32,7 @@ function callServer() {
       renderHTML(candidate);
       console.log(candidate.candidateStatus);
       switch (candidate.candidateStatus) {
-        case 'Accepted': selected.push(candidate);
+        case 'Selected': selected.push(candidate);
           break;
         case 'Rejected': rejected.push(candidate);
           break;
