@@ -155,8 +155,7 @@ app.get('/api/getpdf/:club/:id', (req, res) => {
   });
 });
 
-app.set('port', process.env.PORT || 3000);
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Up`);
 });
 
