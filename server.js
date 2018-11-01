@@ -16,6 +16,7 @@ var {Club} = require('./models/club');
 var {authenticate} = require('./middleware/authenticate');
 var {fetchClubInfo} = require('./middleware/fetchClubInfo');
 
+const port = process.env.PORT || 3000;
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/ClubComing', {useNewUrlParser: true, useCreateIndex: true})
 
@@ -155,7 +156,7 @@ app.get('/api/getpdf/:club/:id', (req, res) => {
   });
 });
 
-app.listen(8080, () => {
+app.listen(port, () => {
   console.log(`Up`);
 });
 
