@@ -18,7 +18,7 @@ var {fetchClubInfo} = require('./middleware/fetchClubInfo');
 
 const port = process.env.PORT || 3000;
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/ClubComing', {useNewUrlParser: true, useCreateIndex: true})
+mongoose.connect('mongodb://appteam:123456a@ds147213.mlab.com:47213/clubcoming', {useNewUrlParser: true, useCreateIndex: true})
 
 var app = express();
 app.set('view engine', 'hbs');
