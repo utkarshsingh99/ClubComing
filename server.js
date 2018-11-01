@@ -173,7 +173,7 @@ function makepdf(club, id, res){
     var json_obj = candidate;
     console.log(candidate);
     fs.writeFileSync(base_filename+'.json', JSON.stringify(json_obj), function(err) {});
-    var prc = spawn('python', ["makepdf.py", base_filename+'.json']);
+    var prc = spawn('python3', ["makepdf.py", base_filename+'.json']);
 
     //noinspection JSUnresolvedFunction
     prc.stdout.setEncoding('utf8');
