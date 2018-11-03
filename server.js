@@ -156,15 +156,16 @@ app.get('/api/getpdf/:club/:id', (req, res) => {
   });
 });
 
+  // var ref = firebase.database().ref();
 app.listen(port, () => {
   console.log(`Up`);
 });
 
 //LaTex TEMPLATINGlocalhost:3000/api/getpdf/:club/:id
 function makepdf(club, id, res){
-  // var ref = firebase.database().ref();
   var base_filename = path.join(__dirname, '/generated_pdfs', club+id)
   var pdf_filename = base_filename+'.pdf';
+  console.log(`Inside makepdf`);
   Candidates.findOne({
     club,
     rollNumber: id

@@ -9,6 +9,7 @@ jQuery('#select').on('click', function () {
   }, function () {
     jQuery('#status')[0].textContent = 'Selected';
   });
+  window.href = '/dashboard';
 });
 
 jQuery('#reject').on('click', function () {
@@ -19,6 +20,7 @@ jQuery('#reject').on('click', function () {
   }, function () {
     jQuery('#status')[0].textContent = 'Rejected';
   });
+  window.href = '/dashboard';
 });
 
 jQuery('#shortlist').on('click', function () {
@@ -29,6 +31,7 @@ jQuery('#shortlist').on('click', function () {
   }, function () {
     jQuery('#status')[0].textContent = 'Shortlisted';
   });
+  window.href = '/dashboard';
 });
 
 jQuery('#undo').on('click', function () {
