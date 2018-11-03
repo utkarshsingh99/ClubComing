@@ -172,7 +172,7 @@ function makepdf(club, id, res){
   }).then((candidate) => {
     var fs = require('fs');
     var json_obj = candidate;
-    console.log(candidate);
+    console.log(`Candidate found: ${json_obj}`);
     fs.writeFileSync(base_filename+'.json', JSON.stringify(json_obj), function(err) {});
     var prc = spawn('python3', ["makepdf.py", base_filename+'.json']);
 
