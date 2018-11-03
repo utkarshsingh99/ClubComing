@@ -22,6 +22,7 @@ def parse(json_str, template_str):
 	# mobile = str(parsed_json["Mobile"])
 	# email = parsed_json["Email"]
 	# branch = parsed_json["Branch"]
+	# TODO: Splitting of string with commas not working. Will have to come up with newer solution
 	details["rollNumber"] = parsed_json["rollNumber"]
 	# skills = parsed_json["Skills"]
 	# achievements = parsed_json["Achievements"]
