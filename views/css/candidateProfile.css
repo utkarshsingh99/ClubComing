@@ -368,7 +368,10 @@ figcaption {
 }
 
 .fixed-image-section {
-  padding: 117px 20px;
+  padding-top: 117px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 50px;
   background-color: #fff;
   color: #fff;
   text-align: center;
@@ -1088,5 +1091,13 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
     display: block;
     overflow: visible;
     clear: none;
+  }
+}
+
+@media screen and (min-width: 600px){
+  .comments-text {
+    align-self: center;
+    font-size: 17px;
+    margin-bottom: 40px;
   }
 }

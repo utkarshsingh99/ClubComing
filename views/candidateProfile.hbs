@@ -29,7 +29,7 @@
                 <div class="w-row">
                     <div class="content-column w-col w-col-6">
                         <h1 class="heading">{{name}}</h1>
-                        <p class="paragraph"><strong>{{name}}</strong> is a <strong>{{branch}}</strong> student with roll number <strong id="rollNumber">{{rollNumber}}</strong></p>
+                        <p class="paragraph"><strong id="name">{{name}}</strong> is a <strong>{{branch}}</strong> student with roll number <strong id="rollNumber">{{rollNumber}}</strong></p>
                         <div><a href="/api/getpdf/{{club}}/{{rollNumber}}" target="_blank" class="hollow-button">Get to know {{name}}!</a></div>
                     </div>
                     <div class="image-column w-col w-col-6"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e42c9832956_photo-1431329842981-433c8635c2b9-bw.jpg" width="363" srcset="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e42c9832956_photo-1431329842981-433c8635c2b9-bw-p-500x331.jpeg 500w, https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e42c9832956_photo-1431329842981-433c8635c2b9-bw.jpg 1300w" sizes="(max-width: 479px) 74vw, (max-width: 767px) 63vw, (max-width: 991px) 38vw, 363px" alt="" ></div>
@@ -43,6 +43,7 @@
         <h2 class="section-heading centered" style="color: #333;">Rate {{name}}</h2>
         <div class="w-container">
             <div class="w-form">
+                <h4 style="color: #333; font-weight: 200;">Previous Rating: {{rating}}</h4>
                 <form id="email-form-2" name="email-form-2">
                     <!-- Star rating code -->
                     <fieldset class="rating" style="margin-bottom: 50px; margin-top: 20px;">
@@ -58,7 +59,7 @@
                       <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                     </fieldset>
                     <!-- Star rating code ends -->
-                    <textarea id="field-2" name="field-2" maxlength="5000" rows="8" placeholder="Try, &#x27;Creative, Intelligent, but too shy&#x27;" class="w-input"></textarea>
+                    <textarea id="comments" rows="8" cols="70" class="comments-text">{{comments}}</textarea>
                 </form>
                 <button class="w-button" id="submitScore">Submit Score</button>
             </div>
@@ -91,30 +92,10 @@
 
     <!-- Applied For Section -->
     <div class="section">
-        <div class="w-container">
+        <div class="w-container" id="clubApplied">
             <div class="section-title-group">
                 <h2 class="section-heading centered">Other clubs {{name}} has applied for</h2>
                 <div class="section-subheading center sasd-asd-as">Find all the other clubs {{name}} is looking to get into</div>
-            </div>
-            <div class="w-row">
-                <div class="w-col w-col-6">
-                    <div class="w-row">
-                        <div class="w-col w-col-4"><img src="https://uploads-ssl.webflow.com/img/image-placeholder.svg" width="100" alt="" class="grid-image" /></div>
-                        <div class="w-col w-col-8">
-                            <h3>Public Relations</h3>
-                            <p>Public Relations hasn&#x27;t interviewed {{name}} yet</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-col w-col-6">
-                    <div class="w-row">
-                        <div class="column w-col w-col-4"><img src="https://uploads-ssl.webflow.com/img/image-placeholder.svg" width="100" alt="" class="grid-image" /></div>
-                        <div class="w-col w-col-8">
-                            <h3>English Club</h3>
-                            <p>English Club has interviewed {{name}} and are reviewing his application</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -124,7 +105,7 @@
         <div class="w-container">
             <div class="section-title-group">
                 <h2 class="section-heading centered">Feedback Form</h2>
-                <div class="section-subheading center">It feels bad to be rejected, doesn&#x27;t it? Let {{name}} know what they lacked</div>
+                <div class="section-subheading center">It feels bad to be rejected, doesn&#x27;t it? Let {{name}} know what they lacked and we'll directly mail them your feedback</div>
             </div>
             <div class="form-wrapper squeezed w-form">
                 <form id="email-form" name="email-form" data-name="Email Form">
@@ -152,7 +133,7 @@
             <div class="w-row">
                 <div class="w-col w-col-3">
                     <h1 class="footer-brand-text" id="club">{{club}}</h1>
-                    <p>We've got pretty amazing CVs. We hope you select the best ones. All the best!</p>
+                    <p>We've received some pretty amazing CVs for your club. We hope you select the best ones. All the best!</p>
                     <div>
                         <a href="#" class="social-icon-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e4d3a83295a_social-03.svg" width="20" alt="" /></a>
                         <a href="#" class="social-icon-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e51ba832952_social-18.svg" width="20" alt="" /></a>
@@ -174,5 +155,5 @@ jQuery('#submitScore').on('click', function () {
   console.log(radio);
 });
 </script>
-<!-- <script src="/js/candidateProfile.js"></script> -->
+<script src="/js/candidateProfile.js"></script>
 </html>

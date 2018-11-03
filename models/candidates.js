@@ -15,7 +15,7 @@ var CandidateSchema = new mongoose.Schema({
       default: 'Applied'            // 'Applied' or 'Interviewed'
     },
     rating: {
-      type: Number
+      type: String
     },
     comments: {
       type: String
