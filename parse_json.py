@@ -2,8 +2,8 @@ import json
 
 
 def parse(json_str, template_str):
-	print("json:")
-	print(json_str)
+	# print("json:")
+	# print(json_str)
 
 	parsed_json = json.loads(json_str)
 
@@ -35,16 +35,19 @@ def parse(json_str, template_str):
 	skills_list = details["skills"].split(',')
 	skills_str = ""
 	for item in skills_list:
+		item.replace("\n", "")
 		skills_str += "\item "+item
 
 	achievement_list = details["Achievements"].split('\n')
 	achievements_str = ""
 	for item in achievement_list:
+		item.replace("\n", "")
 		achievements_str += "\item "+item
 
 	interest = details["AreasOfInt"].split(',')
 	interest_str = ""
 	for item in interest:
+		item.replace("\n", "")
 		interest_str += "\item "+item
 
 	InterestAreas = "Areas of Interest"

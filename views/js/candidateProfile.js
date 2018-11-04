@@ -73,7 +73,7 @@ jQuery.get('/fetchclubs', {rollNumber}, function (clubs) {
       statusMessage = `<b>has interviewed</b> ${name} and are reviewing their application`;
     }
 
-  console.log('Clubs: ', clubs);
+  console.log('Real Info of Clubs: ', clubs);
   clubs.forEach(function (club) {
     count++;
     if(count == 2) {
