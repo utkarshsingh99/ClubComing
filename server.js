@@ -78,7 +78,6 @@ app.get('/candidate/:clubname/:roll', fetchClubInfo, (req, res) => {
 });
 
 app.post('/postcandidate', (req, res) => {
-  console.log(`Post Request being made`);
   var body = _.pick(req.body, ["name", "rollNumber", "mobile", "club", "branch", "email", "interviewStatus", "skills", "Achievements", "AreasOfInt", "ques1", "ques2", "ques3", "ques4"]);
 
   var candidates = new Candidates(body);
@@ -172,6 +171,10 @@ function makepdf(club, id, res){
   }).then((candidate) => {
     var fs = require('fs');
     var json_obj = candidate;
+    var trimkeys = ['skills', 'Achievements', 'AreasOfInt', 'ques1', 'ques2', 'ques3', 'ques4'];
+    for(var i in trimkeys) {
+      json_obj[trimkeys[i]] = json_obj[trimkeys[i]].trim();
+    }
     console.log(`Candidate found: ${json_obj}`);
     fs.writeFileSync(base_filename+'.json', JSON.stringify(json_obj), function(err) {});
     var prc = spawn('python3', ["makepdf.py", base_filename+'.json']);

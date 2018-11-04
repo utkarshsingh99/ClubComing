@@ -1101,3 +1101,10 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
     margin-bottom: 40px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .comments-text {
+    align-self: center;
+    width: 30em;
+  }
+}
