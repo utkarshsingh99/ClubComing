@@ -2,43 +2,197 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poor+Story" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="/css/dashboard.css">
-    <title id="clubName">{{clubName}}</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+    <link rel="stylesheet" href="/css/dash.css">
+    <title>Hello, {{clubName}}</title>
   </head>
   <body>
-    <button id="signOut" class="tab-buttons">Sign Out</button>
-    <div class="container">
-      <div class="row tabs">
-        <div class="col-md-3">
-          <button class="tab-buttons" style="background-color: blue;" id="all">All</button>
-        </div>
-        <div class="col-md-3">
-          <button class="tab-buttons" style="background-color: green;" id="selected">Selected</button>
-        </div>
-        <div class="col-md-3">
-          <button class="tab-buttons" style="background-color: yellow;" id="shortlisted">Shortlisted</button>
-        </div>
-        <div class="col-md-3">
-          <button class="tab-buttons" style="background-color: red;" id="rejected">Rejected</button>
-        </div>
-      </div>
-      <div class="container" id="candidates">
-        <!-- List Data of Candidates -->
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Club Up for </a>
+      <ul class="nav navbar-nav">
+      <li class="active"><a href="#" id="clubName">{{clubName}}</a></li>
+    </ul>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#" id="openCandidates"><span class="glyphicon glyphicon-education"></span> Candidates </a></li>
+      <li><a href="#" id="openStats"><span class="glyphicon glyphicon-stats"></span> Stats </a></li>
+      <li><a href="#" id="signOut"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container" id="candidates">
+  <div class="row">
+    <div class="col-md-4 padding-0">
+      <img class="grayscale" src="https://netstorage-yen.akamaized.net/images/3o3bpd34lj57bvlgd.jpg" alt="">
+      <div class="center">
+        <h1 id="applications"></h1>
+        <h2>Applications Submitted</h2>
       </div>
     </div>
-  </body>
-  <script type="text/javascript" src="/js/dashboard.js"></script>
-</html>
+    <div class="col-md-4 padding-0">
+      <img class="filter" src="http://houseofbots.com/images/news/2257/cover.png" alt="">
+      <div class="center">
+        <h1 id="interviewed"></h1>
+        <h2>Candidates Interviewed</h2>
+      </div>
+    </div>
+    <div class="col-md-4 padding-0">
+      <img class="blur" src="http://media.gettyimages.com/photos/group-of-people-waiting-for-job-interview-picture-id692740076?s=170667a&w=1007" alt="">
+      <div class="center">
+        <h1 id="remaining"></h1>
+        <h2>Remaining</h2>
+      </div>
+    </div>
+  </div>
 
-<!-- <div class="container contain">
-  <div class="row centerContent">
-    <form>
-      <input type="text" name="" value="" placeholder="Search Roll Number" id="search" align="middle">
-    </form>
-    <button type="button" name="button" id="initSearch">Search</button>
+  <ul class="nav nav-tabs nav-justified">
+    <li class="active"><a data-toggle="tab" id="all" href="#dall">All</a></li>
+    <li><a data-toggle="tab" id="selected" href="#dselected">Selected</a></li>
+    <li><a data-toggle="tab" id="shortlisted" href="#dshortlisted">Shortlisted</a></li>
+    <li><a data-toggle="tab" id="rejected" href="#drejected">Rejected</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="dall" class="tab-pane fade in active">
+      <div class="list">
+       <table align="center" id="display-all">
+         <tr>
+          <th>Pic</th>
+          <th>Name</th>
+          <th>Roll Number</th>
+          <th>Rating</th>
+          <th>Status</th>
+          <th>Result</th>
+         </tr>
+      </table>
+     </div>
+    </div>
+    <div id="dselected" class="tab-pane fade">
+      <div class="list">
+       <table align="center" id="display-selected">
+         <tr>
+          <th>Pic</th>
+          <th>Name</th>
+          <th>Roll Number</th>
+          <th>Rating</th>
+          <th>Status</th>
+          <th>Result</th>
+         </tr>
+      </table>
+     </div>
+    </div>
+    <div id="dshortlisted" class="tab-pane fade">
+      <div class="list">
+       <table align="center" id="display-shortlisted">
+         <tr>
+          <th>Pic</th>
+          <th>Name</th>
+          <th>Roll Number</th>
+          <th>Rating</th>
+          <th>Status</th>
+          <th>Result</th>
+         </tr>
+      </table>
+     </div>
+    </div>
+    <div id="drejected" class="tab-pane fade">
+      <div class="list">
+       <table align="center" id="display-rejected">
+         <tr>
+          <th>Pic</th>
+          <th>Name</th>
+          <th>Roll Number</th>
+          <th>Rating</th>
+          <th>Status</th>
+          <th>Result</th>
+         </tr>
+      </table>
+     </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="container" id="stats">
+  <ul class="nav nav-tabs nav-justified">
+    <li class="active"><a data-toggle="tab" id="all-stats" href="#sall">All</a></li>
+    <li><a data-toggle="tab" id="selected-stats" href="#sselected">Selected</a></li>
+    <li><a data-toggle="tab" id="shortlisted-stats" href="#sshortlisted">Shortlisted</a></li>
+    <li><a data-toggle="tab" id="rejected-stats" href="#srejected">Rejected</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade in active" id="sall">
+      <div class="row">
+        <div class="col-md-6" id="sexCharta">
+        </div>
+        <div class="col-md-6" id="branchCharta">
+
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="sselected">
+      <div class="row">
+        <div class="col-md-6" id="sexCharts">
+
+        </div>
+        <div class="col-md-6" id="branchCharts">
+
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="sshortlisted">
+      <div class="row">
+        <div class="col-md-6" id="sexCharth">
+
+        </div>
+        <div class="col-md-6" id="branchCharth">
+
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="srejected">
+      <div class="row">
+        <div class="col-md-6" id="sexChartr">
+
+        </div>
+        <div class="col-md-6" id="branchChartr">
+
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-  <div class="container" id="container">
-  </div> -->
+<!-- Footer Section -->
+<div class="footer accent">
+    <div class="container">
+        <div class="row">
+            <div class="col col-3">
+                <h1 class="footer-brand-text" id="club">{{club}}</h1>
+                <p>We've received some pretty amazing CVs for your club. We hope you select the best ones. All the best!</p>
+                <div>
+                    <a href="#" class="social-icon-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e4d3a83295a_social-03.svg" width="20" alt="" /></a>
+                    <a href="#" class="social-icon-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e51ba832952_social-18.svg" width="20" alt="" /></a>
+                    <a href="#" class="social-icon-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e0d12832908_social-09.svg" width="20" alt="" /></a>
+                    <a href="#" class="social-icon-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e6ebf832911_social-06.svg" width="20" alt="" /></a>
+                </div>
+            </div>
+            <div class="w-col w-col-3"></div>
+            <div class="w-col w-col-3"></div>
+            <div class="w-col w-col-3"></div>
+        </div>
+    </div>
+</div>
+<script src="/js/dashboard.js"></script>
+</body>
+</html>
