@@ -176,7 +176,7 @@ p {
   height: 100%;
   padding-top: 193px;
   padding-bottom: 237px;
-  background-image: url("https://uploads-ssl.webflow.com/5bdc5a028fe51b5a6f2f7462/5bdc5a028fe51b44a52f746f_beach-1600px.jpg");
+  background-image: url("/img/background.jpg");
   background-size: cover;
   color: #fff;
   text-align: center;
