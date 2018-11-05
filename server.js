@@ -55,13 +55,13 @@ app.get('/signedout', (req, res) => {
 app.post('/login', authenticate, (req, res) => {
     res.cookie('x-auth', req.token, { maxAge: 900000, httpOnly: true });
     res.render('dashboard', {
-      clubName: req.user.name
+      clubName: req.user.name[0].toUpperCase() + req.user.name.substring(1, req.user.name.length)
     });
 });
 
 app.get('/dashboard', fetchClubInfo, (req, res) => {
   res.render('dashboard', {
-    clubName: req.user.name
+    clubName: req.user.name[0].toUpperCase() + req.user.name.substring(1, req.user.name.length)
   });
 });
 
