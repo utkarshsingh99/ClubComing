@@ -1,6 +1,7 @@
 var club = jQuery('#club')[0].textContent;
 var rollNumber = jQuery('#rollNumber')[0].textContent;
 var name = jQuery('#name')[0].textContent;
+var email = jQuery('#email')[0].textContent;
 
 jQuery('#select').on('click', function () {
   jQuery.post('/statusChange', {
@@ -52,7 +53,6 @@ jQuery('#undo').on('click', function () {
 });
 
 jQuery('#submitScore').on('click', function () {
-  console.log(`Click`);
   jQuery.post('/scorechange', {
     club,
     rollNumber,
@@ -60,6 +60,19 @@ jQuery('#submitScore').on('click', function () {
     comments: jQuery('#comments')[0].value
   }, function () {
     alert('Your Scores were recorded!');
+  });
+});
+
+jQuery('#submitMail').on('click', function () {
+  var feedbackName = jQuery('#feedbackName')[0].textContent;
+  var feedbackEmail = jQuery('#feedbackEmail')[0].textContent;
+  var feedback = "";
+  feedback = jQuery('#feedback')[0].textContent;
+  console.log(feedback);
+  jQuery.post('/mail', {
+    mail: email,
+    club,
+    feedback
   });
 });
 

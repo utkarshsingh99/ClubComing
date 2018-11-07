@@ -2,19 +2,18 @@ const express = require('express');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var _ = require('lodash');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 var cookieParser = require('cookie-parser');
 const path = require('path');
 const fs = require('fs');
-const spawn = require('child_process').spawn;
-var argv = require('optimist').argv;
 
 var {Candidates} = require('./models/candidates');
 var {Club} = require('./models/club');
 var {authenticate} = require('./middleware/authenticate');
 var {fetchClubInfo} = require('./middleware/fetchClubInfo');
+var {sendMail} = require('./middleware/mail');
+var {makepdf} = require('./middleware/latex');
 
 const port = process.env.PORT || 3000;
 mongoose.Promise = global.Promise;
@@ -32,6 +31,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/signedout', (req, res) => {
+  console.log(`Inside Sign Out`);
   var token = req.cookies['x-auth'];
   Club.findByToken(token).then((club) => {
     if(!club) {
@@ -132,6 +132,16 @@ app.post('/scoreChange', fetchClubInfo, (req, res) => {
   });
 });
 
+app.post('/mail', (req, res) => {
+  console.log(req.body.feedback);
+  sendMail(req.body.mail, req.body.club, req.body.feedback);
+  // .then((success) => {
+  //   res.send(success);
+  // }).catch((e) => {
+  //   res.send(e);
+  // });
+});
+
 app.get('/pingcheck', (req, res) => {
   res.send(`Hello!`);
 })
@@ -159,45 +169,3 @@ app.get('/api/getpdf/:club/:id', (req, res) => {
 app.listen(port, () => {
   console.log(`Up`);
 });
-
-//LaTex TEMPLATINGlocalhost:3000/api/getpdf/:club/:id
-function makepdf(club, id, res){
-  var base_filename = path.join(__dirname, '/generated_pdfs', club+id)
-  var pdf_filename = base_filename+'.pdf';
-  console.log(`Inside makepdf`);
-  Candidates.findOne({
-    club,
-    rollNumber: id
-  }).then((candidate) => {
-    var fs = require('fs');
-    var json_obj = candidate;
-    var trimkeys = ['skills', 'Achievements', 'AreasOfInt', 'ques1', 'ques2', 'ques3', 'ques4'];
-    for(var i in trimkeys) {
-      json_obj[trimkeys[i]] = json_obj[trimkeys[i]].trim();
-    }
-    console.log(`Candidate found: ${json_obj}`);
-    fs.writeFileSync(base_filename+'.json', JSON.stringify(json_obj), function(err) {});
-    var prc = spawn('python3', ["makepdf.py", base_filename+'.json']);
-
-    //noinspection JSUnresolvedFunction
-    prc.stdout.setEncoding('utf8');
-    prc.stdout.on('data', function (data) {
-        var str = data.toString()
-        var lines = str.split(/(\r?\n)/g);
-        console.log(lines.join(""));
-    });
-    prc.stderr.setEncoding('utf8');
-    prc.stderr.on('data', function (data) {
-        var str = data.toString()
-        var lines = str.split(/(\r?\n)/g);
-        console.log(lines.join(""));
-    });
-
-    prc.on('close', function (code) {
-        res.sendFile(pdf_filename);
-        console.log('process exit code ' + code);
-    });
-  }).catch((err) => {
-    console.log(`No Candidate Found`, err);
-  });
-}

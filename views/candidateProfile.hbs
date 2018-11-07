@@ -65,7 +65,7 @@
             </div>
         </div>
     </div>
-
+    <h4 style="display: none;" id="email">{{email}}</h4>
     <!-- Judgement Section -->
     <div class="section">
         <div class="w-container">
@@ -108,14 +108,14 @@
                 <div class="section-subheading center">It feels bad to be rejected, doesn&#x27;t it? Let {{name}} know what they lacked and we'll directly mail them your feedback</div>
             </div>
             <div class="form-wrapper squeezed w-form">
-                <form id="email-form" name="email-form" data-name="Email Form" method="post">
+                <form id="email-form" name="email-form" data-name="Email Form">
                     <label for="name" class="form-label">Your name:</label>
-                    <input type="text" id="name" name="name" data-name="Name" maxlength="256" class="form-field w-input" />
+                    <input type="text" id="feedbackName" name="name" data-name="Name" maxlength="256" class="form-field w-input"/>
                     <label for="email" class="form-label">Any contact number or link which {{name}} can reach out to you</label>
-                    <input type="email" id="email" name="email" data-name="Email" placeholder="Try &#x27;someone@example.com&#x27; or &#x27;+91 9385343277&#x27;" maxlength="256" required="" class="form-field w-input" />
+                    <input type="email" id="feedbackEmail" name="email" data-name="Email" placeholder="Try &#x27;someone@example.com&#x27; or &#x27;+91 9385343277&#x27;" maxlength="256" required="" class="form-field w-input" />
                     <label for="field" class="form-label">your feedback:</label>
-                    <textarea id="field" name="field" maxlength="5000" placeholder="What they can improve on or a reason why they were rejected" class="form-field text-area w-input"></textarea>
-                    <input type="submit" value="Send Feedback" data-wait="Please wait..." class="button full-width w-button" id="submitScore" />
+                    <textarea id="feedback" name="field" maxlength="5000" placeholder="What they can improve on or a reason why they were rejected" class="form-field text-area w-input"></textarea>
+                    <input type="submit" value="Send Feedback" data-wait="Please wait..." class="button full-width w-button" id="submitMail" />
                 </form>
                 <div class="success-wrapper w-form-done">
                     <p class="success-message">Thank you! Your submission has been received!</p>
@@ -148,12 +148,5 @@
         </div>
     </div>
 </body>
-<script type="text/javascript">
-  jQuery('#submitScore').on('click', function () {
-    console.log(`Click`);
-    var radio = jQuery("input[name='rating']:checked").val();
-    console.log(radio);
-  });
-</script>
 <script src="/js/candidateProfile.js"></script>
 </html>
