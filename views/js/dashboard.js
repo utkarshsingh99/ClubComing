@@ -20,7 +20,7 @@ function renderHTML(candidate) {
   } else {
     candidateStatus = "";
   }
-  var string = `<tr onclick="location.href='http://localhost:3000/candidate/${clubData.name}/${candidate.rollNumber}'">
+  var string = `<tr onclick="location.href='http://clubcoming.herokuapp.com/candidate/${clubData.name}/${candidate.rollNumber}'">
     <td><img class="pic" src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" alt=""></td>
    <td>${candidate.name}</td>
    <td>${candidate.rollNumber}</td>
