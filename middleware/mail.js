@@ -1,13 +1,12 @@
 const nodemailer = require('nodemailer');
 
+const {serverInfo} = require('./serverInfo');
+
 var sendMail = (mail, club, feedback) => {
 
     var transporter = nodemailer.createTransport({
       service: 'gmail',
-      auth: {
-        user: 'clubupserver@gmail.com',
-        pass: 'appteam@123'
-      }
+      auth: serverInfo
     });
 
     var mailOptions = {
