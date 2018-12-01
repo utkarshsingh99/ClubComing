@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 var cookieParser = require('cookie-parser');
 const path = require('path');
 const fs = require('fs');
-
+const _=require('lodash');
 var {Candidates} = require('./models/candidates');
 var {Club} = require('./models/club');
 var {authenticate} = require('./middleware/authenticate');
@@ -79,14 +79,16 @@ app.get('/candidate/:clubname/:roll', fetchClubInfo, (req, res) => {
 
 app.post('/postcandidate', (req, res) => {
   var body = _.pick(req.body, ["name", "rollNumber", "mobile", "club", "branch", "email", "interviewStatus", "skills", "Achievements", "AreasOfInt", "ques1", "ques2", "ques3", "ques4"]);
-
+body.rollNumber=body.rollNumber.toUpperCase();
   var candidates = new Candidates(body);
   console.log(body);
+
   candidates.save().then((cand) => {
     res.send(cand);
   }).catch((e) => {
     res.send(e);
   });
+
 });
 
 app.get('/fetchcandidates', fetchClubInfo, (req, res) => {
