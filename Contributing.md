@@ -42,6 +42,12 @@ This is because more than one person can submit the code for the same issue, and
     - If the change is in the UI Design, try uploading a screenshot of the changed UI page
     - If the change is for resolving a bug/optimisation, point out your optimisation for it.
     - If the change is for feature enhancements, just point out the files changed.
+    
+## Note for GET/POST Requests
+(This is ONLY for those contributors who want to deal with GET/POST requests and Database Queries)
+
+Since a lot of people might be sending test POST requests, we might have to occasionally clear the test data in our database. So if you do not GET any data which you had sent before, don't be worried
+    
   
 ## Footnote
 
