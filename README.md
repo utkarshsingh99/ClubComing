@@ -3,6 +3,7 @@
 ClubComing is a website that partly automates the interview process for getting into clubs in various colleges.
 
 URL: http://clubcoming.herokuapp.com/
+Gitter Communication Channel: https://gitter.im/ClubComing/clubcoming
 
 We have an app which will be used by candidates to register for interviews. This consists of form answers to common CV questions. You can find the working demo here: https://github.com/appteam-nith/GetIntoClub
 
