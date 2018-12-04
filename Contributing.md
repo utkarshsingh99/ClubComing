@@ -47,7 +47,16 @@ This is because more than one person can submit the code for the same issue, and
 (This is ONLY for those contributors who want to deal with GET/POST requests and Database Queries)
 
 Since a lot of people might be sending test POST requests, we might have to occasionally clear the test data in our database. So if you do not GET any data which you had sent before, don't be worried
-    
+
+## Note for MongoDB Debugging
+(This is ONLY for those contributors who want to deal with Database Queries and MongoDB Code)
+
+If you want to access the database in your own PC, please do so by changing the URL in mongo.connect("") in server.js file. Due to security reasons we cannot provide actual database access to everyone. You are free to run the code in your PC by typing the following code:
+```
+mongo.connect("mongodb://localhost:27017/clubcoming", {useNewUrlParser: true, useCreateIndex: true});
+```
+
+While making a pull request at the end, make sure you change the URL back to the original one.
   
 ## Footnote
 
