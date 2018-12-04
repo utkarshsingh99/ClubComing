@@ -53,3 +53,7 @@ The bigger the college, the more number of clubs it houses, and more are the num
 - No one likes being rejected. Send a direct feedback to the candidate you're unable to select for some reason. The feedback will go directly to his/her mail.
 
 Contributions, Suggestions and Feedback are welcome!
+
+### Issue Assign Period
+
+Please note that once an issue is assigned to a person, and the issue is not shown any activity(a pull request or a comment in the issue) in the next 5 days after the assignment by the contributor, it will be unassigned and re-assigned to some other willing contributor to give everyone an opportunity.
