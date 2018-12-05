@@ -25,13 +25,32 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use(express.static(__dirname+'/views'));
 app.use(cookieParser());
+var re=''
 
-app.get('/', (req, res) => {
+const auth=(req,res,next)=>{
+if(!re)
+{
+  res.redirect('/')
+}
+else {
+  next();
+}
+}
+app.get('/',(req, res) => {
+if(re)
+{
+  res.redirect('/dashboard')
+}
+else{
   res.render('index');
+
+}
+
 });
 
 app.get('/signedout', (req, res) => {
   console.log(`Inside Sign Out`);
+  re='';
   var token = req.cookies['x-auth'];
   Club.findByToken(token).then((club) => {
     if(!club) {
@@ -44,7 +63,7 @@ app.get('/signedout', (req, res) => {
     {$pull: {
       tokens: {token}
     }}).then((club) => {
-      return res.send(200);
+      return res.sendStatus(200);
     }).catch((e) => {
       console.log(`Error`);
       res.sendStatus(400);
@@ -53,13 +72,17 @@ app.get('/signedout', (req, res) => {
 });
 
 app.post('/login', authenticate, (req, res) => {
+
     res.cookie('x-auth', req.token, { maxAge: 900000, httpOnly: true });
-    res.render('dashboard', {
-      clubName: req.user.name[0].toUpperCase() + req.user.name.substring(1, req.user.name.length)
-    });
+    re=req.user;
+  res.redirect('/dashboard')
+
+console.log("THIS IS USER"+"  "+req.user)
 });
 
-app.get('/dashboard', fetchClubInfo, (req, res) => {
+app.get('/dashboard',auth, fetchClubInfo, (req, res) => {
+
+  console.log("THIS IS USER"+"  "+req.user)
   res.render('dashboard', {
     clubName: req.user.name[0].toUpperCase() + req.user.name.substring(1, req.user.name.length)
   });
