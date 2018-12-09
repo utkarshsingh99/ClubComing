@@ -13,6 +13,12 @@ It's a community lobby where other people who have contributed to this idea will
 - Clone the program and follow the 'How to Run' steps in the README file.
 - You do **NOT** need to study the entire code to start contributing.
 
+## Usability
+- Username: appteam
+- Password: 12345
+
+Use this for debugging and accessing further pages
+
 ## Issue Making
 
 - Any form of bug, code error, feature enhancements, UI Changes request, or any other form of issue can be put up by anyone. 
