@@ -27,17 +27,16 @@ app.use(express.static(__dirname+'/views'));
 app.use(cookieParser());
 
 app.get('/',(req, res) => {
-  console.log(req.cookies['x-auth']);
-  if(req.cookies['x-auth']) {
-    res.redirect('/dashboard')
-  } else {
-    res.render('index');
-  }
+  res.render('index');
+  // if(!req.cookies['x-auth']) {
+  //   res.render('index');
+  // } else {
+  //   res.redirect('/dashboard')
+  // }
 });
 
 app.get('/signedout', (req, res) => {
   console.log(`Inside Sign Out`);
-  re='';
   var token = req.cookies['x-auth'];
   Club.findByToken(token).then((club) => {
     if(!club) {
@@ -68,7 +67,6 @@ app.get('/dashboard', fetchClubInfo, (req, res) => {
   res.render('dashboard', {
     clubName: req.user.name[0].toUpperCase() + req.user.name.substring(1, req.user.name.length)
   });
-  re='';
 });
 
 app.get('/candidate/:clubname/:roll', fetchClubInfo, (req, res) => {
