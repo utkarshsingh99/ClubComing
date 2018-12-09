@@ -26,8 +26,13 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname+'/views'));
 app.use(cookieParser());
 
-app.get('/', (req, res) => {
-  res.render('index');
+app.get('/',(req, res) => {
+  console.log(req.cookies['x-auth']);
+  if(req.cookies['x-auth']) {
+    res.redirect('/dashboard')
+  } else {
+    res.render('index');
+  }
 });
 
 app.get('/signedout', (req, res) => {
@@ -44,7 +49,7 @@ app.get('/signedout', (req, res) => {
     {$pull: {
       tokens: {token}
     }}).then((club) => {
-      return res.send(200);
+      return res.sendStatus(200);
     }).catch((e) => {
       console.log(`Error`);
       res.sendStatus(400);
@@ -53,16 +58,16 @@ app.get('/signedout', (req, res) => {
 });
 
 app.post('/login', authenticate, (req, res) => {
-    res.cookie('x-auth', req.token, { maxAge: 900000, httpOnly: true });
-    res.render('dashboard', {
-      clubName: req.user.name[0].toUpperCase() + req.user.name.substring(1, req.user.name.length)
-    });
+  res.cookie('x-auth', req.token, { maxAge: 900000, httpOnly: true });
+  res.redirect('/dashboard');
 });
 
 app.get('/dashboard', fetchClubInfo, (req, res) => {
+  console.log(`Inside dashboard`);
   res.render('dashboard', {
     clubName: req.user.name[0].toUpperCase() + req.user.name.substring(1, req.user.name.length)
   });
+  re='';
 });
 
 app.get('/candidate/:clubname/:roll', fetchClubInfo, (req, res) => {
@@ -79,10 +84,9 @@ app.get('/candidate/:clubname/:roll', fetchClubInfo, (req, res) => {
 
 app.post('/postcandidate', (req, res) => {
   var body = _.pick(req.body, ["name", "rollNumber", "mobile", "club", "branch", "email", "interviewStatus", "skills", "Achievements", "AreasOfInt", "ques1", "ques2", "ques3", "ques4"]);
-body.rollNumber=body.rollNumber.toUpperCase();
+  body.rollNumber=body.rollNumber.toUpperCase();
   var candidates = new Candidates(body);
   console.log(body);
-
   candidates.save().then((cand) => {
     res.send(cand);
   }).catch((e) => {

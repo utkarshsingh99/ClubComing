@@ -30,14 +30,14 @@ var authenticate = (req, res, next) => {
     var token = generateAuthToken(user);
     if(res) {
       req.token = token;
-       req.user = user;
-       next();
+      req.user = user;
+      next();
      } else {
        return Promise.reject();
     }
   });
 }).catch((e) => {
-  console.log(`Error: ${e}`);
+  console.log(`Authenticate middleware Error: ${e}`);
   res.sendStatus(401);
 });
 };
