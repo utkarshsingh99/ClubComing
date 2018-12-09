@@ -37,6 +37,7 @@ app.get('/',(req, res) => {
 
 app.get('/signedout', (req, res) => {
   console.log(`Inside Sign Out`);
+  re='';
   var token = req.cookies['x-auth'];
   Club.findByToken(token).then((club) => {
     if(!club) {
