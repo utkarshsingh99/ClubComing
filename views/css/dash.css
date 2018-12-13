@@ -4,6 +4,15 @@
 #candidates {
   display: block;
 }
+.navbar-brand{
+  font-family: Lobster;
+  font-size: 1.5em;
+}
+#clubName{
+  font-family: Lobster;
+  font-size: 1.5em;
+  background-color: inherit;
+}
 img {
   max-width: 100%;
 /*   max-height: 100%; */
