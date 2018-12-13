@@ -4,9 +4,17 @@
 #candidates {
   display: block;
 }
-img {
+img{
   max-width: 100%;
-/*   max-height: 100%; */
+  border-radius: 2%;
+  transition: all .2s ease-in-out;
+  z-index: 1;
+  filter: blur(2px) grayscale(100%);
+  
+}
+img:hover {
+  transform: scale(1.1);
+  filter: grayscale(10%)
 }
 
 .pic {
@@ -18,21 +26,23 @@ img {
   text-align: center;
 }
 
-.blur {
-  filter: blur(2px);
-}
 
-/* .blur:hover, .filter:hover, .grayscale:hover {
-  box-shadow: 2px 5px #ddd;
+/* .blur {
+  filter: blur(1px);
 } */
 
-.filter {
+.blur:hover, .filter:hover, .grayscale:hover {
+  /* box-shadow: 2px 5px #ddd; */
+  /* transform: scale(2x); */
+}
+
+/* .filter {
   filter: opacity(50%);
 }
 
 .grayscale {
   filter: blur(2px);
-}
+} */
 
 .padding-0 {
   padding-left: 0;
@@ -50,6 +60,8 @@ img {
 table {
   width: 90%;
   border: collapse;
+  box-decoration-break: slice;
+  border-bottom: 2px solid black;
 }
 
 th {
@@ -75,6 +87,7 @@ td {
 }
 
 .footer {
+  margin-top: 20px;
   padding-top: 50px;
   padding-bottom: 50px;
   padding-right: 20px;
@@ -128,3 +141,8 @@ td {
 .footer-link.with-icon {
   margin-left: 30px;
 }
+
+.fa {
+  margin-left: 10px;
+}
+
