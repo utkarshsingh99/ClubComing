@@ -72,7 +72,7 @@ jQuery('#signOut').on('click', function () {
   });
 });
 
-<!-- Visualisation Code -->
+//  <!--Visualisation Code-->
 
 function branches(array) {
   var branch = [['CSE', 0], ['ECE', 0], ['CSE DUAL', 0], ['Mech.', 0], ['ECE DUAL', 0], ['Civil', 0]];
