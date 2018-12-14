@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Poor+Story" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <title>Hello, {{clubName}}</title>
     <link rel="stylesheet" type="text/css" href="/css/newdash.css">
@@ -13,34 +14,100 @@
 </head>
 <body>
 	<!--Navigation Bar--->
+	<div id="clubName">{{clubName}}</div>
 	<nav>
 		<div class="nav-bar">
 			<div id="club-name">Club Up for {{clubName}}</div>
 			<div id="nav-container">
-				<div class="nav-link"><a href="#" id="openCandidates"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Candidates</a></div>
-				<div class="nav-link"><a href="#" id="openStats"><i class="fa fa-bar-chart" aria-hidden="true"></i> Stats </a></div>
-				<div class="nav-link"><a href="#" id="signOut"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a></div>
+				<a href="#" id="openCandidates"><div class="nav-link"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Candidates</div></a>
+				<a href="#" id="openStats"><div class="nav-link"><i class="fa fa-bar-chart" aria-hidden="true"></i> Stats</div></a>
+				<a href="#" id="signOut"><div class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</div></a>
 			</div>
 		</div>
 	</nav>
 	<!--Dash Board-->
 	<div class="feature center" id="candidates">
 		<div class="box">
-			<h1><i class="fa fa-vcard"></i></h1>
-			<h2 id="applications"></h2>
-			<h2>Applications Submitted</h2>
+			<h1><i class="fa fa-envelope fa-lg"></i></h1>
+			<h2 id="applications">
+			<h2 class="txt-shadow">Applications<br/>Submitted</h2>
 		</div>
 		<div class="box">
-			<h1><i class="fa fa-vcard"></i></h1>
+			<h1><i class="fa fa-group fa-lg"></i></h1>
 			<h2 id="interviewed"></h2>
-			<h2>Applications Submitted</h2>
+			<h2 class="txt-shadow">Candidates<br/>Interviewed</h2>
 		</div>
 		<div class="box">
-			<h1><i class="fa fa-vcard"></i></h1>
+			<h1><i class="fa fa-vcard fa-lg"></i></h1>
 			<h2 id="remaining"></h2>
-			<h2>Applications Submitted</h2>
+			<h2 class="txt-shadow">Remaining</h2>
 		</div>
 	</div>
-	<script src="/js/dashboard.js"></script>
+	<div class="navbar-pills center">
+		<a data-toggle="tab" class="nav-pills active" id="all" href="#dall">All</a>
+		<a data-toggle="tab" class="nav-pills" id="selected" href="#dselected">Selected</a>
+		<a data-toggle="tab" class="nav-pills" id="shortlisted" href="#dshortlisted">Shortlisted</a>
+		<a data-toggle="tab" class="nav-pills" id="rejected" href="#drejected">Rejected</a>
+	</div>
+	<!--div class="Rtable Rtable--6cols center">
+		<div class="Rtable-cell">Pic</div>
+		<div class="Rtable-cell">Name</div>
+		<div class="Rtable-cell">Roll Number</div>
+		<div class="Rtable-cell">Rating</div>
+		<div class="Rtable-cell">Status</div>
+		<div class="Rtable-cell">Result</div>
+    </div-->
+    <!--Stats-->
+    <div class="container hide" id="stats">
+      <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a data-toggle="tab" id="all-stats" href="#sall">All</a></li>
+        <li><a data-toggle="tab" id="selected-stats" href="#sselected">Selected</a></li>
+        <li><a data-toggle="tab" id="shortlisted-stats" href="#sshortlisted">Shortlisted</a></li>
+        <li><a data-toggle="tab" id="rejected-stats" href="#srejected">Rejected</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="sall">
+          <div class="row">
+            <div class="col-md-6" id="sexCharta">
+            </div>
+            <div class="col-md-6" id="branchCharta">
+
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="sselected">
+          <div class="row">
+            <div class="col-md-6" id="sexCharts">
+
+            </div>
+            <div class="col-md-6" id="branchCharts">
+
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="sshortlisted">
+          <div class="row">
+            <div class="col-md-6" id="sexCharth">
+
+            </div>
+            <div class="col-md-6" id="branchCharth">
+
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="srejected">
+          <div class="row">
+            <div class="col-md-6" id="sexChartr">
+
+            </div>
+            <div class="col-md-6" id="branchChartr">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/dashboard.js"></script>
 </body>
 </html>

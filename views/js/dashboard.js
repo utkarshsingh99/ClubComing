@@ -1,9 +1,8 @@
 $(document).ready(callServer);
 var selected = [], rejected = [], shortlisted = [], all = [], interviewed = [], notInterviewed = [];
 var clubData = {
-  name: jQuery('#clubName')[0].text.toLowerCase()
+  name: jQuery('#clubName').text().toLowerCase()
 }
-
 console.log(clubData);
 var candidatesData = jQuery('#candidates');
 function renderHTML(candidate) {
@@ -138,6 +137,7 @@ console.log(all);
 
 jQuery('#openStats').on('click', function () {
   jQuery('#candidates').css('display', 'none');
+  jQuery('table').css('display','none');
   jQuery('#stats').css('display', 'block');
   Stats(all, 'Branch', 'a');
   Stats(all, 'Sex', 'a');
@@ -152,4 +152,12 @@ jQuery('#openStats').on('click', function () {
 jQuery('#openCandidates').on('click', function () {
   jQuery('#candidates').css('display', 'block');
   jQuery('#stats').css('display', 'none');
+});
+
+
+jQuery(".nav-pills").on('click',function(){
+  jQuery.each(jQuery('.nav-pills'),function(){
+    jQuery(this).removeClass("active");
+  });
+  jQuery(this).addClass("active");
 });
