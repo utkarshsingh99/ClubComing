@@ -96,7 +96,7 @@ img{
 }
 
 .txt-shadow{
-	text-shadow: 4px 4px 15px;
+	text-shadow: 0px 0px 15px;
 }
 
 .feature{
@@ -151,19 +151,27 @@ img{
 	width: 75%;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 0 3em 0;
+  justify-content: space-around;
+ 	margin-top: 20px;
   padding: 0;
+  background-color: #FFF;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 10px #000;
+  margin-bottom: 20px;
 }
 .Rtable-cell {
+	font-size:1.5em;
+	font-weight: bold;
+	color: var(--secondary);
+	font-family: 'Poor Story';
   box-sizing: border-box;
   flex-grow: 1;
   width: 100%;  // Default to full width
-  padding: 0.8em 1.2em;
-  overflow: hidden; // Or flex might break
+  padding: 20px;
   list-style: none;
   border: solid @bw white;
-  background: fade(slategrey,20%);
-  > h1, > h2, > h3, > h4, > h5, > h6 { margin: 0; }
+  min-height: 40px;
+  margin-top: 20px;
 }
 .header{
 	width: 
@@ -172,5 +180,15 @@ img{
 	width: 70px;
 }
 .grid-image{
-	width: 70px;
+	width: 35px;
+}
+.row-link{
+	display: flex;
+	width: 100%;
+}
+
+@media(max-width: 480px){
+	.feature{
+		flex-direction: column;
+	}
 }

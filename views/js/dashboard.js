@@ -19,14 +19,14 @@ function renderHTML(candidate) {
   } else {
     candidateStatus = "";
   }
-  var string = `<tr onclick="location.href='http://localhost:3000/candidate/${clubData.name}/${candidate.rollNumber}'">
-    <td><img class="pic" src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" alt=""></td>
-   <td>${candidate.name}</td>
-   <td>${candidate.rollNumber}</td>
-   <td>${candidate.rating}</td>
-   <td>${candidate.interviewStatus}</td>
-   <td><img src="${candidateStatus}" width="35" alt="" class="grid-image" /></td>
-   </tr>`
+  var string = `<a class="row-link removeable" href='http://localhost:3000/candidate/${clubData.name}/${candidate.rollNumber}'">
+   <div class="Rtable-cell removeable"><img class="pic removeable" src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" alt=""></div>
+   <div class="Rtable-cell removeable">${candidate.name}</div>
+   <div class="Rtable-cell removeable">${candidate.rollNumber}</div>
+   <div class="Rtable-cell removeable">${candidate.rating}</div>
+   <div class="Rtable-cell removeable">${candidate.interviewStatus}</div>
+   <div class="Rtable-cell removeable"><img src="${candidateStatus}" width="35" alt="" class="grid-image removeable" /></div>
+   </a>`
   return string;
 }
 
@@ -154,10 +154,19 @@ jQuery('#openCandidates').on('click', function () {
   jQuery('#stats').css('display', 'none');
 });
 
-
+console.log(selected);
 jQuery(".nav-pills").on('click',function(){
   jQuery.each(jQuery('.nav-pills'),function(){
     jQuery(this).removeClass("active");
   });
   jQuery(this).addClass("active");
+  var selector = jQuery(this).attr('id');
+  jQuery(".removeable").detach();
+  jQuery('.Rtable').attr('id','selected')
+  var str = '';
+  jQuery.each(window[selector],function(){
+   str = str + renderHTML(this);
+  });
+  jQuery('.Rtable').append(str);
+  
 });
