@@ -199,14 +199,13 @@ body{
 	}
 }
 .footer {
-  margin-top: 20px;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  padding-right: 20px;
-  padding-left: 20px;
-}
+  margin-top: 5em;
+  padding-top: 2.5em;
+  padding-bottom: 2.5em;
+} 
 
-.footer.center {
+.footer .center {
+	margin-top: 50px;
   text-align: center;
 }
 
@@ -256,4 +255,6 @@ body{
 
 .fa {
   margin-left: 10px;
+  min-width: 35px;
+  min-height: 35px;
 }
