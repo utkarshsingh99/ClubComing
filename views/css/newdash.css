@@ -19,7 +19,7 @@ body{
 	width: 100%;
 	background-color: #10b5b5;
 	margin: 0px;
-	position: fixed;
+	position: static;
 	top: 0;
 	left: 0;
 	min-height: 50px;
@@ -72,10 +72,6 @@ body{
 	text-align: center;
 }
 
-img{
-	width: 100%;
-	height:auto;
-}
 .nav-link:hover{
 	animation: change 1s;
 	animation-fill-mode: forwards;
@@ -105,9 +101,9 @@ img{
 	font-size: 1em;
 	border-radius: 10px;
 	padding: 20px;
-	background-color: #EFEFEF;/*  */
+	background-color: #FFF;
 	overflow: hidden;
-	display: flex !important;
+	display: flex;
 	justify-content: space-around;
 	font-family: Montserrat;
 	color: #10b5b5;
@@ -118,7 +114,7 @@ img{
 	margin-top: 75px;
 	width: 75%;
 	font-family: Montserrat;
-	font-size: 1.5em;
+	font-size: 1.25em;
 	display: flex;
 	justify-content: space-between;
 }
@@ -140,7 +136,6 @@ img{
 	background-color: #FFF;
 	color: var(--secondary);
 	font-weight: bold;
-	text-shadow: 4px 4px 15px;
 }
 .Rtable--2cols > .Rtable-cell  { width: 50%; }
 .Rtable--3cols > .Rtable-cell  { width: 33.33%; }
@@ -158,6 +153,7 @@ img{
   border-radius: 10px;
   box-shadow: inset 0px 0px 10px #000;
   margin-bottom: 20px;
+  padding: 10px;
 }
 .Rtable-cell {
 	font-size:1.5em;
@@ -166,12 +162,12 @@ img{
 	font-family: 'Poor Story';
   box-sizing: border-box;
   flex-grow: 1;
-  width: 100%;  // Default to full width
-  padding: 20px;
+  width: 100%; 
   list-style: none;
   border: solid @bw white;
   min-height: 40px;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .header{
 	width: 
@@ -187,8 +183,77 @@ img{
 	width: 100%;
 }
 
+.chart-table{
+	width: 75%;
+	height: 400px;
+}
 @media(max-width: 480px){
 	.feature{
 		flex-direction: column;
 	}
+	.nav-bar{
+		flex-direction: column;
+	}
+	#nav-container{
+		flex-direction: column;
+	}
+}
+.footer {
+  margin-top: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.footer.center {
+  text-align: center;
+}
+
+.footer.centered-smaller {
+  padding-top: 33px;
+  padding-bottom: 33px;
+}
+
+.footer.accent {
+  background-color: #f1f1f1;
+}
+
+.footer.centered-accented {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.float-right {
+  float: right;
+}
+
+.footer-text {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.footer-brand-text {
+  font-size: 26px;
+  line-height: 33px;
+}
+
+.footer-link {
+  display: block;
+  margin-bottom: 6px;
+  color: rgba(0, 0, 0, .74);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #3b99d9;
+}
+
+.footer-link.with-icon {
+  margin-left: 30px;
+}
+
+.fa {
+  margin-left: 10px;
 }

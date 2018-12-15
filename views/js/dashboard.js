@@ -30,6 +30,12 @@ function renderHTML(candidate) {
   return string;
 }
 
+function toTitleCase(str) {
+    return str.replace(/(?:^|\s)\w/g, function(match) {
+        return match.toUpperCase();
+    });
+}
+
 function callServer() {
   jQuery.getJSON('/fetchcandidates', clubData, function(data) {
     data.forEach(function (candidate) {
@@ -121,14 +127,14 @@ function Stats (array, string, arg) {
         data.addRows(arrayToPass);
 
         // Set chart options
-        var options = {'title':`All Candidates by ${string}`,
-                       'width':600,
-                       'height':500};
+        var options = {'title':`${toTitleCase(arg)} Candidates by ${string}`,
+                       'width':'auto',
+                       'height':'auto'};
 
         // Instantiate and draw our chart, passing in some options.
         string = string.toLowerCase();
         console.log(`${string}Chart${arg}`);
-        var chart = new google.visualization.PieChart(document.getElementById(`${string}Chart${arg}`));
+        var chart = new google.visualization.PieChart(document.getElementById(`${string}Chart`));
         chart.draw(data, options);
       }
 }
@@ -136,21 +142,27 @@ function Stats (array, string, arg) {
 console.log(all);
 
 jQuery('#openStats').on('click', function () {
-  jQuery('#candidates').css('display', 'none');
-  jQuery('table').css('display','none');
-  jQuery('#stats').css('display', 'block');
-  Stats(all, 'Branch', 'a');
-  Stats(all, 'Sex', 'a');
-  Stats(selected, 'Branch', 's');
-  Stats(selected, 'Sex', 's');
-  Stats(shortlisted, 'Branch', 'h');
-  Stats(shortlisted, 'Sex', 'h');
-  Stats(rejected, 'Branch', 'r');
-  Stats(rejected, 'Sex', 'r');
+  jQuery('.feature').css('display', 'none');
+  jQuery('.Rtable').css('display','none');
+  jQuery('.nav-pills').addClass('stat-pills');
+  jQuery('#stats').css('display', 'flex').removeClass('hide');
+  Stats(all, 'Branch', 'all');
+  Stats(all, 'Sex', 'all');
 });
 
+jQuery('.nav-pills').on('click',function(){
+  if(jQuery(this).hasClass('stat-pills')){
+    var selector = jQuery(this).attr('id');
+    jQuery('.chart').children().remove();
+    Stats(window[selector],'Branch',selector);
+    Stats(window[selector],'Sex',selector);
+  }
+})
+
 jQuery('#openCandidates').on('click', function () {
-  jQuery('#candidates').css('display', 'block');
+  jQuery('nav-pills').removeClass('stat-pills');
+  jQuery('.feature').css('display', 'flex');
+  jQuery('.Rtable').css('display','flex');
   jQuery('#stats').css('display', 'none');
 });
 

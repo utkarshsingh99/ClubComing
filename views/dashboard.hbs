@@ -22,32 +22,33 @@
 				<a href="#" id="openCandidates"><div class="nav-link"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Candidates</div></a>
 				<a href="#" id="openStats"><div class="nav-link"><i class="fa fa-bar-chart" aria-hidden="true"></i> Stats</div></a>
 				<a href="#" id="signOut"><div class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</div></a>
+				<a class="hide nav-btn"><i class="fa fa-bars-w"></i></a>
 			</div>
 		</div>
 	</nav>
 	<!--Dash Board-->
 	<div class="feature center" id="candidates">
 		<div class="box">
-			<h1><i class="fa fa-envelope fa-lg"></i></h1>
+			<h1><i class="fa fa-envelope fa-lg aria-hidden="true"></i></h1>
 			<h2 id="applications">
 			<h2 class="txt-shadow">Applications<br/>Submitted</h2>
 		</div>
 		<div class="box">
-			<h1><i class="fa fa-group fa-lg"></i></h1>
+			<h1><i class="fa fa-question fa-lg" aria-hidden="true"></i></h1>
 			<h2 id="interviewed"></h2>
 			<h2 class="txt-shadow">Candidates<br/>Interviewed</h2>
 		</div>
 		<div class="box">
-			<h1><i class="fa fa-vcard fa-lg"></i></h1>
+			<h1><i class="fa fa-vcard fa-lg" aria-hidden="true"></i></h1>
 			<h2 id="remaining"></h2>
 			<h2 class="txt-shadow">Remaining</h2>
 		</div>
 	</div>
 	<div class="navbar-pills center">
-		<a data-toggle="tab" class="nav-pills active" id="all" href="#dall">All</a>
-		<a data-toggle="tab" class="nav-pills" id="selected" href="#dselected">Selected</a>
-		<a data-toggle="tab" class="nav-pills" id="shortlisted" href="#dshortlisted">Shortlisted</a>
-		<a data-toggle="tab" class="nav-pills" id="rejected" href="#drejected">Rejected</a>
+		<a data-toggle="tab" class="nav-pills active" id="all" href="#dall">All <i class = "fa fa-users fa-lg" aria-hidden="true"></i></a>
+		<a data-toggle="tab" class="nav-pills" id="selected" href="#dselected">SELECTED <i class = "fa fa-check fa-lg" aria-hidden="true"></i></a>
+		<a data-toggle="tab" class="nav-pills" id="shortlisted" href="#dshortlisted">SHORTLISTED  <i class = "fa fa-clock-o fa-lg" aria-hidden="true" ></i></a>
+		<a data-toggle="tab" class="nav-pills" id="rejected" href="#drejected">REJECTED <i class = "fa fa-times fa-lg" aria-hidden="true"></i></a>
 	</div>
 	<div class="Rtable Rtable--6cols center" id="display-all">
 		<div class="Rtable-cell">Pic</div>
@@ -58,55 +59,30 @@
 		<div class="Rtable-cell">Result</div>
   </div>
     <!--Stats-->
-    <div class="container hide" id="stats">
-      <ul class="nav nav-tabs nav-justified">
-        <li class="active"><a data-toggle="tab" id="all-stats" href="#sall">All</a></li>
-        <li><a data-toggle="tab" id="selected-stats" href="#sselected">Selected</a></li>
-        <li><a data-toggle="tab" id="shortlisted-stats" href="#sshortlisted">Shortlisted</a></li>
-        <li><a data-toggle="tab" id="rejected-stats" href="#srejected">Rejected</a></li>
-      </ul>
-
-      <div class="tab-content">
-        <div class="tab-pane fade in active" id="sall">
-          <div class="row">
-            <div class="col-md-6" id="sexCharta">
+    <div class="Rtable--2cols chart-table feature center hide" id="stats">
+     		<div class="Rtable-cell chart" id="sexChart">
+      	</div>
+      	<div class="Rtable-cell chart" id="branchChart">
+      	</div> 
+    </div>
+    <div class="footer accent">
+        <div class="container">
+            <div class="row">
+                <div class="col col-3">
+                    <h1 class="footer-brand-text" id="club">{{club}}</h1>
+                    <p>We've received some pretty amazing CVs for your club. We hope you select the best ones. All the best!</p>
+                    <div>
+                        <a href="#" class="social-icon-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e4d3a83295a_social-03.svg" width="20" alt="" /></a>
+                        <a href="#" class="social-icon-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e51ba832952_social-18.svg" width="20" alt="" /></a>
+                        <a href="#" class="social-icon-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e0d12832908_social-09.svg" width="20" alt="" /></a>
+                        <a href="#" class="social-icon-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e6ebf832911_social-06.svg" width="20" alt="" /></a>
+                    </div>
+                </div>
+                <div class="w-col w-col-3"></div>
+                <div class="w-col w-col-3"></div>
+                <div class="w-col w-col-3"></div>
             </div>
-            <div class="col-md-6" id="branchCharta">
-
-            </div>
-          </div>
         </div>
-        <div class="tab-pane fade" id="sselected">
-          <div class="row">
-            <div class="col-md-6" id="sexCharts">
-
-            </div>
-            <div class="col-md-6" id="branchCharts">
-
-            </div>
-          </div>
-        </div>
-        <div class="tab-pane fade" id="sshortlisted">
-          <div class="row">
-            <div class="col-md-6" id="sexCharth">
-
-            </div>
-            <div class="col-md-6" id="branchCharth">
-
-            </div>
-          </div>
-        </div>
-        <div class="tab-pane fade" id="srejected">
-          <div class="row">
-            <div class="col-md-6" id="sexChartr">
-
-            </div>
-            <div class="col-md-6" id="branchChartr">
-
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <script src="/js/dashboard.js"></script>
 </body>
