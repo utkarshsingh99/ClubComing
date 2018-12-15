@@ -187,7 +187,10 @@ body{
 	width: 75%;
 	height: 400px;
 }
-@media(max-width: 480px){
+.txt{
+	display: inline;
+}
+@media(max-width: 760px){
 	.feature{
 		flex-direction: column;
 	}
@@ -196,6 +199,9 @@ body{
 	}
 	#nav-container{
 		flex-direction: column;
+	}
+	.txt{
+		display: none;
 	}
 }
 .footer {
