@@ -23,6 +23,7 @@ body{
 	top: 0;
 	left: 0;
 	min-height: 50px;
+	height: auto;
 	margin-bottom: 20px; 
 }
 
@@ -198,8 +199,20 @@ body{
 		flex-direction: column;
 	}
 	#nav-container{
-		flex-direction: column;
+		background-color: var(--primary);
+		display: block;
+		margin: 0;
+		padding-left: 1.5em;
+		width: 100%;
 	}
+	.nav-link{
+		width: 100%;
+	}
+	#club-name{
+		width: 100%;
+		display: block;
+	}
+	.
 	.txt{
 		display: none;
 	}
