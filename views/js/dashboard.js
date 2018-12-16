@@ -1,9 +1,8 @@
 $(document).ready(callServer);
 var selected = [], rejected = [], shortlisted = [], all = [], interviewed = [], notInterviewed = [];
 var clubData = {
-  name: jQuery('#clubName')[0].text.toLowerCase()
+  name: jQuery('#clubName').text().toLowerCase()
 }
-
 console.log(clubData);
 var candidatesData = jQuery('#candidates');
 function renderHTML(candidate) {
@@ -20,15 +19,21 @@ function renderHTML(candidate) {
   } else {
     candidateStatus = "";
   }
-  var string = `<tr onclick="location.href='http://localhost:3000/candidate/${clubData.name}/${candidate.rollNumber}'">
-    <td><img class="pic" src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" alt=""></td>
-   <td>${candidate.name}</td>
-   <td>${candidate.rollNumber}</td>
-   <td>${candidate.rating}</td>
-   <td>${candidate.interviewStatus}</td>
-   <td><img src="${candidateStatus}" width="35" alt="" class="grid-image" /></td>
-   </tr>`
+  var string = `<a class="row-link removeable" href='http://localhost:3000/candidate/${clubData.name}/${candidate.rollNumber}'">
+   <div class="Rtable-cell removeable"><img class="pic removeable" src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" alt=""></div>
+   <div class="Rtable-cell removeable">${candidate.name}</div>
+   <div class="Rtable-cell removeable">${candidate.rollNumber}</div>
+   <div class="Rtable-cell removeable">${candidate.rating}</div>
+   <div class="Rtable-cell removeable">${candidate.interviewStatus}</div>
+   <div class="Rtable-cell removeable"><img src="${candidateStatus}" width="35" alt="" class="grid-image removeable" /></div>
+   </a>`
   return string;
+}
+
+function toTitleCase(str) {
+    return str.replace(/(?:^|\s)\w/g, function(match) {
+        return match.toUpperCase();
+    });
 }
 
 function callServer() {
@@ -122,14 +127,14 @@ function Stats (array, string, arg) {
         data.addRows(arrayToPass);
 
         // Set chart options
-        var options = {'title':`All Candidates by ${string}`,
-                       'width':600,
-                       'height':500};
+        var options = {'title':`${toTitleCase(arg)} Candidates by ${string}`,
+                       'width':'auto',
+                       'height':'auto'};
 
         // Instantiate and draw our chart, passing in some options.
         string = string.toLowerCase();
         console.log(`${string}Chart${arg}`);
-        var chart = new google.visualization.PieChart(document.getElementById(`${string}Chart${arg}`));
+        var chart = new google.visualization.PieChart(document.getElementById(`${string}Chart`));
         chart.draw(data, options);
       }
 }
@@ -137,21 +142,43 @@ function Stats (array, string, arg) {
 console.log(all);
 
 jQuery('#openStats').on('click', function () {
-  jQuery('#candidates').css('display', 'none');
-  jQuery('#stats').css('display', 'block');
-  Stats(all, 'Branch', 'a');
-  Stats(all, 'Sex', 'a');
-  Stats(selected, 'Branch', 's');
-  Stats(selected, 'Sex', 's');
-  Stats(shortlisted, 'Branch', 'h');
-  Stats(shortlisted, 'Sex', 'h');
-  Stats(rejected, 'Branch', 'r');
-  Stats(rejected, 'Sex', 'r');
+  jQuery('.feature').css('display', 'none');
+  jQuery('.Rtable').css('display','none');
+  jQuery('.nav-pills').addClass('stat-pills');
+  jQuery('#stats').css('display', 'flex').removeClass('hide');
+  Stats(all, 'Branch', 'all');
+  Stats(all, 'Sex', 'all');
 });
 
+jQuery('.nav-pills').on('click',function(){
+  if(jQuery(this).hasClass('stat-pills')){
+    var selector = jQuery(this).attr('id');
+    jQuery('.chart').children().remove();
+    Stats(window[selector],'Branch',selector);
+    Stats(window[selector],'Sex',selector);
+  }
+})
+
 jQuery('#openCandidates').on('click', function () {
-  jQuery('#candidates').css('display', 'block');
+  jQuery('nav-pills').removeClass('stat-pills');
+  jQuery('.feature').css('display', 'flex');
+  jQuery('.Rtable').css('display','flex');
   jQuery('#stats').css('display', 'none');
 });
 
-
+console.log(selected);
+jQuery(".nav-pills").on('click',function(){
+  jQuery.each(jQuery('.nav-pills'),function(){
+    jQuery(this).removeClass("active");
+  });
+  jQuery(this).addClass("active");
+  var selector = jQuery(this).attr('id');
+  jQuery(".removeable").detach();
+  jQuery('.Rtable').attr('id','selected')
+  var str = '';
+  jQuery.each(window[selector],function(){
+   str = str + renderHTML(this);
+  });
+  jQuery('.Rtable').append(str);
+  
+});
