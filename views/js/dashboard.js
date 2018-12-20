@@ -19,7 +19,7 @@ function renderHTML(candidate) {
   } else {
     candidateStatus = "";
   }
-  var string = `<a class="row-link removeable" href='http://localhost:3000/candidate/${clubData.name}/${candidate.rollNumber}'">
+  var string = `<a class="row-link removeable" href='/candidate/${clubData.name}/${candidate.rollNumber}'">
    <div class="Rtable-cell removeable"><img class="pic removeable" src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" alt=""></div>
    <div class="Rtable-cell removeable">${candidate.name}</div>
    <div class="Rtable-cell removeable">${candidate.rollNumber}</div>
