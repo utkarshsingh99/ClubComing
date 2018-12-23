@@ -182,3 +182,17 @@ jQuery(".nav-pills").on('click',function(){
   jQuery('.Rtable').append(str);
   
 });
+
+jQuery('#toggle').on('click',function(){
+  if(jQuery('#nav-container').css('display')=='none'){
+    jQuery('#nav-container').css('display','block');
+  }
+  else{
+    jQuery('#nav-container').css('display','none');
+  }
+})
+jQuery(window).resize(function(){
+  if(jQuery('#toggle').css('display')=='none'){
+    jQuery('#nav-container').css('display','flex');
+  }
+});
