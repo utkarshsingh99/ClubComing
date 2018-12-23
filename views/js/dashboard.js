@@ -191,3 +191,8 @@ jQuery('#toggle').on('click',function(){
     jQuery('#nav-container').css('display','none');
   }
 })
+jQuery(window).resize(function(){
+  if(jQuery('#toggle').css('display')=='none'){
+    jQuery('#nav-container').css('display','flex');
+  }
+});
