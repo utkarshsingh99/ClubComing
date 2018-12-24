@@ -4,8 +4,8 @@
 <style>
         body {font-family: Arial, Helvetica, sans-serif;}
         * {box-sizing: border-box}
-        
-        
+
+
         input[type=text], input[type=password] {
           width: 100%;
           padding: 15px;
@@ -14,12 +14,12 @@
           border: none;
           background: #f1f1f1;
         }
-        
+
         input[type=text]:focus, input[type=password]:focus {
           background-color: #ddd;
           outline: none;
         }
-        
+
         button {
           background-color: #4CAF50;
           color: white;
@@ -30,27 +30,27 @@
           width: 100%;
           opacity: 0.9;
         }
-        
+
         button:hover {
           opacity:1;
         }
-        
+
        .signupbtn {
           float: left;
           width: 50%;
         }
-        
+
          .container {
           padding: 16px;
         }
-        
+
         .clearfix::after {
           content: "";
           clear: both;
           display: table;
         }
-        
-        
+
+
         @media screen and (max-width: 300px) {
           .cancelbtn, .signupbtn {
              width: 100%;
@@ -58,8 +58,8 @@
         }
 </style>
 <script>
-    var password = document.getElementById("password")
-  , confirm_password = document.getElementById("confirm_password");
+    var password = document.getElementById("password"),
+    confirm_password = document.getElementById("confirm_password");
 
 function validatePassword(){
   if(password.value != confirm_password.value) {
