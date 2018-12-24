@@ -2,7 +2,7 @@
 	--navbar-text: #EEE;
 	--primary: #10b3b3;
 	--secondary: #10d7d7;
-	--white:#EEE;
+	--white:#FFF;
 }
 
 body{
@@ -104,7 +104,7 @@ body{
 }
 
 .feature{
-	margin-top: 75px;
+	margin-top: 100px;
 	width: 75%;
 	font-size: 1em;
 	border-radius: 10px;
@@ -241,6 +241,7 @@ body{
   margin-top: 5em;
   padding-top: 2.5em;
   padding-bottom: 2.5em;
+  background-color: var(--primary);
 } 
 
 .footer .center {
@@ -255,6 +256,7 @@ body{
 
 .footer.accent {
   background-color: #f1f1f1;
+  color: black;
 }
 
 .footer.centered-accented {
