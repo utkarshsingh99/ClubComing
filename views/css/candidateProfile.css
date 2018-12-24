@@ -143,10 +143,13 @@ form > textarea{
   margin-bottom: 3em;
 }
 @media(max-width: 760px){
-	#left{
+	.feature{
+		flex-direction: column;
+	}
+	#profile > .left{
 		margin: 0 auto 3.5em auto;
 	}
-	#right{
+	#profile > .right{
 		margin: 0 auto 0 auto;
 	}
 	textarea{
