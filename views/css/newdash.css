@@ -1,0 +1,596 @@
+:root{
+	--navbar-text: #EEE;
+	--primary: #10b3b3;
+	--secondary: #10d7d7;
+	--white:#EEE;
+}
+
+body{
+	margin:0px;
+	background-color: #10d7d7;
+}
+
+#toggle{
+	display: none;
+}
+.center{
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+.nav-bar{
+	z-index: 1;
+	width: 100%;
+	background-color: #10b5b5;
+	margin: 0px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	min-height: 50px;
+	height: auto;
+	margin-bottom: 20px; 
+}
+
+#clubName{
+	display: none;
+}
+
+#club-name{
+	display: inline-block;
+	float: left;
+	font-size: 1.25em;
+	font-family: Lobster;
+	text-align: center;
+	vertical-align: middle;
+	color: var(--navbar-text);
+	padding: 5px;
+	margin-left: 20px;
+	line-height: 40px;
+}
+
+#nav-container{
+	display: flex;
+	align-items:flex-end;
+	float: right;
+	margin-right: 20px;
+}
+
+.nav-link{
+	color: #FFF;
+	padding-left: 10px;
+	padding-right: 10px;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 50px;
+	cursor: pointer;
+}
+
+.nav-link:after{
+	width: 10px;
+	height: 50px;
+}
+
+.nav-link a{
+	font-size: 1em;
+	text-decoration: none !important;
+	color: var(--navbar-text) !important;
+	text-align: center;
+}
+
+.nav-link:hover{
+	animation: change 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes change{
+	100%{
+		background-color: #195756;
+		color: #FFF;
+	}
+}
+
+.box{
+	text-align: center;
+	position: relative;
+	height: 100%;
+	padding: 10px;
+	flex-grow: 1;
+}
+
+.txt-shadow{
+	z-index: 0;
+	text-shadow: 0px 0px 15px;
+}
+
+.feature{
+	margin-top: 75px;
+	width: 75%;
+	font-size: 1em;
+	border-radius: 10px;
+	padding: 20px;
+	background-color: #FFF;
+	overflow: hidden;
+	display: flex;
+	justify-content: space-around;
+	font-family: Montserrat;
+	color: #10b5b5;
+	box-shadow: inset 0px 0px 10px #000;
+	margin-bottom: 20px;
+}
+.navbar-pills{
+	margin-top: 75px;
+	width: 75%;
+	font-family: Montserrat;
+	font-size: 1.25em;
+	display: flex;
+	justify-content: space-between;
+}
+.nav-pills{
+	border-bottom: solid 2px;
+	border-color: #FFF;
+	flex-grow: 1;
+	line-height: 50px;
+	min-height: 50px;
+	text-align: center;
+	margin-top:auto;
+	margin-bottom: auto;
+	text-decoration: none !important;
+	color: #FFF;
+}
+
+.active{
+	border-radius: 5px 5px 0px 0px;
+	background-color: #FFF;
+	color: var(--secondary);
+	font-weight: bold;
+}
+.Rtable--2cols > .Rtable-cell  { width: 50%; }
+.Rtable--3cols > .Rtable-cell  { width: 33.33%; }
+.Rtable--4cols > .Rtable-cell  { width: 25%; }
+.Rtable--5cols > .Rtable-cell  { width: 20%; }
+.Rtable--6cols > .Rtable-cell  { width: 16.6%; }
+.Rtable {
+	width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+ 	margin-top: 20px;
+  padding: 0;
+  background-color: #FFF;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 10px #000;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+.Rtable-cell {
+	font-size:1.5em;
+	font-weight: bold;
+	color: var(--secondary);
+	font-family: 'Poor Story';
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%; 
+  list-style: none;
+  border: solid @bw white;
+  min-height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.header{
+	width: 
+}
+.pic{
+	width: 70px;
+}
+.grid-image{
+	width: 35px;
+}
+.row-link{
+	display: flex;
+	width: 100%;
+}
+
+.chart-table{
+	width: 75%;
+	height: 400px;
+}
+.txt{
+	display: inline;
+}
+@media(max-width: 760px){
+	#toggle{
+		display: block;
+		position: fixed;
+		float: right;
+		top: 10px;
+		color: var(--white);
+		right: 5px;
+		z-index: 2;
+		text-align: center;
+		cursor: pointer;
+	}
+	#toggle:hover{
+		text-shadow: 0px 0px 15px var(--white);
+	}
+	.feature{
+		flex-direction: column;
+	}
+	.nav-bar{
+		flex-direction: column;
+	}
+	#nav-container{
+		background-color: var(--primary);
+		display: none;
+		margin: 0;
+		padding-left: 1.5em;
+		width: 100%;
+	}
+	.nav-link{
+		width: 100%;
+	}
+	#club-name{
+		width: 100%;
+		display: block;
+	}
+	.txt{
+		display: none;
+	}
+}
+.footer {
+  margin-top: 5em;
+  padding-top: 2.5em;
+  padding-bottom: 2.5em;
+} 
+
+.footer .center {
+	margin-top: 50px;
+  text-align: center;
+}
+
+.footer.centered-smaller {
+  padding-top: 33px;
+  padding-bottom: 33px;
+}
+
+.footer.accent {
+  background-color: #f1f1f1;
+}
+
+.footer.centered-accented {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.float-right {
+  float: right;
+}
+
+.footer-text {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.footer-brand-text {
+  font-size: 26px;
+  line-height: 33px;
+}
+
+.footer-link {
+  display: block;
+  margin-bottom: 6px;
+  color: rgba(0, 0, 0, .74);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #3b99d9;
+}
+
+.footer-link.with-icon {
+  margin-left: 30px;
+}
+
+.fa {
+  min-width: 35px;
+  min-height: 35px;
+=======
+:root{
+	--navbar-text: #EEE;
+	--primary: #10b3b3;
+	--secondary: #10d7d7;
+	--white:#EEE;
+}
+
+body{
+	margin:0px;
+	background-color: #10d7d7;
+}
+
+#toggle{
+	display: none;
+}
+.center{
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+.nav-bar{
+	z-index: 1;
+	width: 100%;
+	background-color: #10b5b5;
+	margin: 0px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	min-height: 50px;
+	height: auto;
+	margin-bottom: 20px; 
+}
+
+#clubName{
+	display: none;
+}
+
+#club-name{
+	display: inline-block;
+	float: left;
+	font-size: 1.25em;
+	font-family: Lobster;
+	text-align: center;
+	vertical-align: middle;
+	color: var(--navbar-text);
+	padding: 5px;
+	margin-left: 20px;
+	line-height: 40px;
+}
+
+#nav-container{
+	display: flex;
+	align-items:flex-end;
+	float: right;
+	margin-right: 20px;
+}
+
+.nav-link{
+	color: #FFF;
+	padding-left: 10px;
+	padding-right: 10px;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 50px;
+	cursor: pointer;
+}
+
+.nav-link:after{
+	width: 10px;
+	height: 50px;
+}
+
+.nav-link a{
+	font-size: 1em;
+	text-decoration: none !important;
+	color: var(--navbar-text) !important;
+	text-align: center;
+}
+
+.nav-link:hover{
+	animation: change 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes change{
+	100%{
+		background-color: #195756;
+		color: #FFF;
+	}
+}
+
+.box{
+	text-align: center;
+	position: relative;
+	height: 100%;
+	padding: 10px;
+	flex-grow: 1;
+}
+
+.txt-shadow{
+	z-index: 0;
+	text-shadow: 0px 0px 15px;
+}
+
+.feature{
+	margin-top: 75px;
+	width: 75%;
+	font-size: 1em;
+	border-radius: 10px;
+	padding: 20px;
+	background-color: #FFF;
+	overflow: hidden;
+	display: flex;
+	justify-content: space-around;
+	font-family: Montserrat;
+	color: #10b5b5;
+	box-shadow: inset 0px 0px 10px #000;
+	margin-bottom: 20px;
+}
+.navbar-pills{
+	margin-top: 75px;
+	width: 75%;
+	font-family: Montserrat;
+	font-size: 1.25em;
+	display: flex;
+	justify-content: space-between;
+}
+.nav-pills{
+	border-bottom: solid 2px;
+	border-color: #FFF;
+	flex-grow: 1;
+	line-height: 50px;
+	min-height: 50px;
+	text-align: center;
+	margin-top:auto;
+	margin-bottom: auto;
+	text-decoration: none !important;
+	color: #FFF;
+}
+
+.active{
+	border-radius: 5px 5px 0px 0px;
+	background-color: #FFF;
+	color: var(--secondary);
+	font-weight: bold;
+}
+.Rtable--2cols > .Rtable-cell  { width: 50%; }
+.Rtable--3cols > .Rtable-cell  { width: 33.33%; }
+.Rtable--4cols > .Rtable-cell  { width: 25%; }
+.Rtable--5cols > .Rtable-cell  { width: 20%; }
+.Rtable--6cols > .Rtable-cell  { width: 16.6%; }
+.Rtable {
+	width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+ 	margin-top: 20px;
+  padding: 0;
+  background-color: #FFF;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 10px #000;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+.Rtable-cell {
+	font-size:1.5em;
+	font-weight: bold;
+	color: var(--secondary);
+	font-family: 'Poor Story';
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%; 
+  list-style: none;
+  border: solid @bw white;
+  min-height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.header{
+	width: 
+}
+.pic{
+	width: 70px;
+}
+.grid-image{
+	width: 35px;
+}
+.row-link{
+	display: flex;
+	width: 100%;
+}
+
+.chart-table{
+	width: 75%;
+	height: 400px;
+}
+.txt{
+	display: inline;
+}
+@media(max-width: 760px){
+	#toggle{
+		display: block;
+		position: fixed;
+		float: right;
+		top: 10px;
+		color: var(--white);
+		right: 5px;
+		z-index: 2;
+		text-align: center;
+		cursor: pointer;
+	}
+	#toggle:hover{
+		text-shadow: 0px 0px 15px var(--white);
+	}
+	.feature{
+		flex-direction: column;
+	}
+	.nav-bar{
+		flex-direction: column;
+	}
+	#nav-container{
+		background-color: var(--primary);
+		display: none;
+		margin: 0;
+		padding-left: 1.5em;
+		width: 100%;
+	}
+	.nav-link{
+		width: 100%;
+	}
+	#club-name{
+		width: 100%;
+		display: block;
+	}
+	.txt{
+		display: none;
+	}
+}
+.footer {
+  margin-top: 5em;
+  padding-top: 2.5em;
+  padding-bottom: 2.5em;
+} 
+
+.footer .center {
+	margin-top: 50px;
+  text-align: center;
+}
+
+.footer.centered-smaller {
+  padding-top: 33px;
+  padding-bottom: 33px;
+}
+
+.footer.accent {
+  background-color: #f1f1f1;
+}
+
+.footer.centered-accented {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.float-right {
+  float: right;
+}
+
+.footer-text {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.footer-brand-text {
+  font-size: 26px;
+  line-height: 33px;
+}
+
+.footer-link {
+  display: block;
+  margin-bottom: 6px;
+  color: rgba(0, 0, 0, .74);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #3b99d9;
+}
+
+.footer-link.with-icon {
+  margin-left: 30px;
+}
+
+.fa {
+  min-width: 35px;
+  min-height: 35px;
+}
