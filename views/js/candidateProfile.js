@@ -1,49 +1,32 @@
-var club = jQuery('#club')[0].textContent;
-var rollNumber = jQuery('#rollNumber')[0].textContent;
-var name = jQuery('#name')[0].textContent;
-var email = jQuery('#email')[0].textContent;
-
-jQuery('#select').on('click', function () {
+function toTitleCase(str) {
+    return str.replace(/(?:^|\s)\w/g, function(match) {
+        return match.toUpperCase();
+    });
+}
+var club = toTitleCase(jQuery('#club').text());
+console.log(club);
+var rollNumber = jQuery('#rollNumber').text();
+var name = toTitleCase(jQuery('#name').text());
+var email = jQuery('#email').text();
+var colorLookup = {"select":"green","shortlist":"yellow","reject":"red"};
+jQuery('#club-name').append('Club up for '+ club);
+jQuery('title').append(name + "'s Profile")
+jQuery('.feature-column').on('click', function () {
+  var choice = jQuery(this);
+  var status = toTitleCase(choice[0].id)+'ed';
+  jQuery('.feature-column').css("border", "none");
+  choice.css('border','2px '+colorLookup[choice[0].id]+' solid');
+  console.log(status);
   jQuery.post('/statusChange', {
     club,
     rollNumber,
-    candidateStatus: 'Selected'
-  }, function () {
-    jQuery('#select').css("border", "2px green solid");
-    jQuery('#shortlist').css("border", "none");
-    jQuery('#reject').css("border", "none");
-  });
-  window.href = '/dashboard';
+    candidateStatus: status
+  },()=>{window.location.href = '/dashboard'});
 });
 
-jQuery('#reject').on('click', function () {
-  jQuery.post('/statusChange', {
-    club,
-    rollNumber,
-    candidateStatus: 'Rejected'
-  }, function () {
-    jQuery('#select').css("border", "none");
-    jQuery('#shortlist').css("border", "none");
-    jQuery('#reject').css("border", "2px red solid");
-  });
-  window.href = '/dashboard';
-});
-
-jQuery('#shortlist').on('click', function () {
-  jQuery.post('/statuschange', {
-    club,
-    rollNumber,
-    candidateStatus: 'Shortlisted'
-  }, function () {
-    jQuery('#select').css("border", "none");
-    jQuery('#reject').css("border", "none");
-    jQuery('#shortlist').css("border", "2px yellow solid");
-  });
-  window.href = '/dashboard';
-});
 
 jQuery('#undo').on('click', function () {
-  jQuery.post('/statuschange', {
+  jQuery.post('/statusChange', {
     club,
     rollNumber,
     candidateStatus: 'Interviewed'
@@ -88,22 +71,28 @@ jQuery.get('/fetchclubs', {rollNumber}, function (clubs) {
 
   console.log('Real Info of Clubs: ', clubs);
   clubs.forEach(function (club) {
-    count++;
-    if(count == 2) {
-      count = 0;
-      var rowString = `</div>
-      <div class="w-row">`;
-      jQuery('#clubApplied').append(rowString);
-    }
-    var string = `<div class="w-col w-col-6">
-        <div class="w-row">
-            <div class="w-col w-col-4"><img src="https://uploads-ssl.webflow.com/img/image-placeholder.svg" width="100" alt="" class="grid-image" /></div>
-            <div class="w-col w-col-8">
-                <h3>${club.club}</h3>
-                <p>${club.club} ${statusMessage}</p>
-            </div>
-        </div>
-    </div>`;
+    var string = 
+    `
+    <div class="row">
+    <div class="left">
+      <img src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png"  alt="" class='grid-img'/>
+    </div>
+    <div class="right content-mid">
+      <h3>${club.club}</h3>
+      <p>${club.club} ${statusMessage}</p>
+    </div>
+    </div>
+    <div class="row"><hr></div>
+    `;
     jQuery('#clubApplied').append(string);
   });
 });
+//Navbar Toggle
+jQuery('#toggle').on('click',function(){
+  if(jQuery('#nav-container').css('display')=='none'){
+    jQuery('#nav-container').css('display','block');
+  }
+  else{
+    jQuery('#nav-container').css('display','none');
+  }
+})
