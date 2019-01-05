@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<!-- This site was created in Webflow. http://www.webflow.com -->
-<!-- Last Published: Sat Nov 03 2018 09:06:58 GMT+0000 (UTC) -->
-<html data-wf-domain="utkarshs-supercool-project.webflow.io" data-wf-page="5bdc847e1ca86e33718328d6" data-wf-site="5bdc847e1ca86e65658328d1" data-wf-status="1">
-
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="utf-8" />
-    <title>{{name}}'s Profile</title>
+    <title></title>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Webflow" name="generator" />
+    <link rel="stylesheet" type="text/css" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/newdash.css">
     <link rel="stylesheet" href="/css/candidateProfile.css">
     <link rel="stylesheet" href="/css/starRating.css">
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js" type="text/javascript"></script>
@@ -20,125 +18,131 @@
         });
     </script>
 </head>
-
-<body class="body">
-  <!--Candidate Intro Code-->
-    <div data-animation="slide" data-duration="500" class="hero-slider w-slider">
-        <div class="slide w-slide">
-            <div class="slider-container w-container">
-                <div class="w-row">
-                    <div class="content-column w-col w-col-6">
-                        <h1 class="heading">{{name}}</h1>
-                        <p class="paragraph"><strong id="name">{{name}}</strong> is a <strong>{{branch}}</strong> student with roll number <strong id="rollNumber">{{rollNumber}}</strong></p>
-                        <div><a href="/api/getpdf/{{club}}/{{rollNumber}}" target="_blank" class="hollow-button">Get to know {{name}}!</a></div>
-                    </div>
-                    <div class="image-column w-col w-col-6"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e42c9832956_photo-1431329842981-433c8635c2b9-bw.jpg" width="363" srcset="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e42c9832956_photo-1431329842981-433c8635c2b9-bw-p-500x331.jpeg 500w, https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e42c9832956_photo-1431329842981-433c8635c2b9-bw.jpg 1300w" sizes="(max-width: 479px) 74vw, (max-width: 767px) 63vw, (max-width: 991px) 38vw, 363px" alt="" ></div>
-                </div>
+<body>
+    <div id=email style="display: none">{{email}}</div>
+    <div id="club">{{club}}</div>
+    <nav>
+        <div class="nav-bar">
+            <div id="club-name"></div>
+            <div id="nav-container">
+                <a href="/dashboard"><div class="nav-link"><i class="fa fa-home" aria-hidden="true"></i> Home</div></a>
+                <a href="#" id="signOut"><div class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</div></a>
+            </div>
+        </div>
+        <div id="toggle"><i class="fa fa-bars fa-2x"></i></div>
+    </nav>
+    <!--Profile Section-->
+    <div class="feature center" id="profile">
+        <div class="left content-mid">
+            <h1 class="heading">{{name}}</h1>
+            <p class="paragraph"><strong id="name">{{name}}</strong> is a <strong>{{branch}}</strong> student with roll number <strong id="rollNumber">{{rollNumber}}</strong></p>
+            <div class="margin-top"><a href="/api/getpdf/{{club}}/{{rollNumber}}" target="_blank" class="hollow-button">Get to know {{name}}!</a></div>
+        </div>
+        <div class="right">
+            <img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e42c9832956_photo-1431329842981-433c8635c2b9-bw.jpg" width="363" srcset="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e42c9832956_photo-1431329842981-433c8635c2b9-bw-p-500x331.jpeg 500w, https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e42c9832956_photo-1431329842981-433c8635c2b9-bw.jpg 1300w" sizes="(max-width: 479px) 74vw, (max-width: 767px) 63vw, (max-width: 991px) 38vw, 363px" alt="" >
+        </div>
+    </div>
+    <!--Rating Section-->
+    <div class="margin-top center">
+        <h2 class="section-heading centered">Rate {{name}}</h2>
+        <h4 font-weight: 200;">Previous Rating: {{rating}}</h4>
+        <form id="email-form-2" name="email-form-2">
+        <!-- Star rating code -->
+        <div class="container center">
+            <fieldset class="rating" style="margin-bottom: 50px; margin-top: 20px;">
+              <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+              <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+              <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+              <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+              <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+              <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+              <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+              <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+              <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+              <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+            </fieldset>
+        </div>
+        <!-- Star rating code ends -->
+        <div class="container center">
+            <textarea id="comments" rows="8" cols="70" class="comments-text">{{comments}}</textarea>
+        </div>
+        </form>
+        <button class="w-button" id="submitScore">SUBMIT SCORE</button>
+    </div>
+    <!--Judgement Section-->
+    <div class="feature center margin-top" id="judgement-section">
+        <div class="section-title-group">
+            <h2 class="section-heading center">Pronounce Your Judgement</h2>
+            <div class="section-subheading center">Decide if you want the interviewed candidate in your team</div>
+        </div>
+        <div class="w-row">
+            <div class="feature-column" id="select">
+                <img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc88137b8a5774d1e305bd_selected.png" width="100" alt="" class="grid-image" />
+                <h3>Select</h3>
+                <p>You&#x27;ve found the match for your club, now stop wasting time and select!</p>
+            </div>
+            <div class="feature-column" id="shortlist">
+                <img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc883e8be058c192ec6398_shortlisted.jpeg" width="100" alt="" class="grid-image" />
+                <h3>Shortlist</h3>
+                <p>Not sure whether to select or reject? No worries, just shortlist and you can come back to view this profile again later</p>
+            </div>
+            <div class="feature-column" id="reject">
+                <img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc88528b50477564bb2968_rejected.png" width="100" alt="" class="grid-image" />
+                <h3>Reject</h3>
+                <p>Not everyone can have the opportunity to be in your club, you have to let some of them go</p>
             </div>
         </div>
     </div>
-
-    <!--Candidate Rating-->
-    <div class="fixed-image-section">
-        <h2 class="section-heading centered" style="color: #333;">Rate {{name}}</h2>
-        <div class="w-container">
-            <div class="w-form">
-                <h4 style="color: #333; font-weight: 200;">Previous Rating: {{rating}}</h4>
-                <form id="email-form-2" name="email-form-2">
-                    <!-- Star rating code -->
-                    <fieldset class="rating" style="margin-bottom: 50px; margin-top: 20px;">
-                      <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                      <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                      <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                      <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                      <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                      <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                      <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                      <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                      <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                      <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                    </fieldset>
-                    <!-- Star rating code ends -->
-                    <textarea id="comments" rows="8" cols="70" class="comments-text">{{comments}}</textarea>
-                </form>
-                <button class="w-button" id="submitScore">Submit Score</button>
-            </div>
-        </div>
-    </div>
-    <h4 style="display: none;" id="email">{{email}}</h4>
-    <!-- Judgement Section -->
-    <div class="section">
-        <div class="w-container">
-            <div class="section-title-group">
-                <h2 class="section-heading centered">Pronounce Your Judgement</h2>
-                <div class="section-subheading center">Decide if you want the interviewed candidate in your team</div>
-            </div>
-            <div class="w-row">
-                <div class="feature-column w-col w-col-4" id="select"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc88137b8a5774d1e305bd_selected.png" width="100" alt="" class="grid-image" />
-                    <h3>Select</h3>
-                    <p>You&#x27;ve found the match for your club, now stop wasting time and select!</p>
-                </div>
-                <div class="feature-column w-col w-col-4" id="shortlist"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc883e8be058c192ec6398_shortlisted.jpeg" width="100" alt="" class="grid-image" />
-                    <h3>Shortlist</h3>
-                    <p>Not sure whether to select or reject? No worries, just shortlist and you can come back to view this profile again later</p>
-                </div>
-                <div class="feature-column w-col w-col-4" id="reject"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc88528b50477564bb2968_rejected.png" width="100" alt="" class="grid-image" />
-                    <h3>Reject</h3>
-                    <p>Not everyone can have the opportunity to be in your club, you have to let some of them go</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Applied For Section -->
-    <div class="section">
-        <div class="w-container" id="clubApplied">
+    <div class="section center margin-2x">
+        <div class="w-container">
             <div class="section-title-group">
-                <h2 class="section-heading centered">Other clubs {{name}} has applied for</h2>
+                <h2 class="section-heading center">Other clubs {{name}} has applied for</h2>
                 <div class="section-subheading center sasd-asd-as">Find all the other clubs {{name}} is looking to get into</div>
+            </div>
+            <div class="feature center" id="clubApplied">
+                
             </div>
         </div>
     </div>
 
     <!-- Feedback Section -->
-    <div class="section">
-        <div class="w-container">
-            <div class="section-title-group">
-                <h2 class="section-heading centered">Feedback Form</h2>
-                <div class="section-subheading center">It feels bad to be rejected, doesn&#x27;t it? Let {{name}} know what they lacked and we'll directly mail them your feedback</div>
+    <div class="section center margin-2x">
+        <div class="section-title-group">
+            <h2 class="section-heading center">Feedback Form</h2>
+            <div class="section-subheading center">It feels bad to be rejected, doesn&#x27;t it? Let {{name}} know what they lacked and we'll directly mail them your feedback</div>
+        </div>
+        <div class="form-wrapper center">
+            <form id="email-form" name="email-form" data-name="Email Form">
+                <label for="name" class="form-label">Your name:</label>
+                <input type="text" id="feedbackName" name="name" data-name="Name" maxlength="256" class="form-field w-input"/>
+                <label for="email" class="form-label">Any contact number or link which {{name}} can reach out to you</label>
+                <input type="email" id="feedbackEmail" name="email" data-name="Email" placeholder="Enter e-mail or phone" maxlength="256" required="" class="form-field w-input" />
+                <label for="field" class="form-label">your feedback:</label>
+                <textarea id="feedback" name="field" maxlength="5000" placeholder="What they can improve on or a reason why they were rejected" class="form-field text-area w-input"></textarea>
+                <input type="submit" value="Send Feedback" data-wait="Please wait..." class="button full-width w-button" id="submitMail" />
+            </form>
+            <div class="success-wrapper w-form-done">
+                <p class="success-message">Thank you! Your submission has been received!</p>
             </div>
-            <div class="form-wrapper squeezed w-form">
-                <form id="email-form" name="email-form" data-name="Email Form">
-                    <label for="name" class="form-label">Your name:</label>
-                    <input type="text" id="feedbackName" name="name" data-name="Name" maxlength="256" class="form-field w-input"/>
-                    <label for="email" class="form-label">Any contact number or link which {{name}} can reach out to you</label>
-                    <input type="email" id="feedbackEmail" name="email" data-name="Email" placeholder="Try &#x27;someone@example.com&#x27; or &#x27;+91 9385343277&#x27;" maxlength="256" required="" class="form-field w-input" />
-                    <label for="field" class="form-label">your feedback:</label>
-                    <textarea id="feedback" name="field" maxlength="5000" placeholder="What they can improve on or a reason why they were rejected" class="form-field text-area w-input"></textarea>
-                    <input type="submit" value="Send Feedback" data-wait="Please wait..." class="button full-width w-button" id="submitMail" />
-                </form>
-                <div class="success-wrapper w-form-done">
-                    <p class="success-message">Thank you! Your submission has been received!</p>
-                </div>
-                <div class="error-wrapper w-form-fail">
-                    <p class="error-message">Oops! Something went wrong while submitting the form :(</p>
-                </div>
+            <div class="error-wrapper w-form-fail">
+                <p class="error-message">Oops! Something went wrong while submitting the form :(</p>
             </div>
         </div>
     </div>
 
     <!-- Footer Section -->
-    <div class="footer accent">
-        <div class="w-container">
-            <div class="w-row">
-                <div class="w-col w-col-3">
+    <div class="footer center accent">
+        <div class="container">
+            <div class="row">
+                <div class="col col-3">
                     <h1 class="footer-brand-text" id="club">{{club}}</h1>
                     <p>We've received some pretty amazing CVs for your club. We hope you select the best ones. All the best!</p>
                     <div>
-                        <a href="#" class="social-icon-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e4d3a83295a_social-03.svg" width="20" alt="" /></a>
-                        <a href="#" class="social-icon-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e51ba832952_social-18.svg" width="20" alt="" /></a>
-                        <a href="#" class="social-icon-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e0d12832908_social-09.svg" width="20" alt="" /></a>
-                        <a href="#" class="social-icon-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5bdc847e1ca86e65658328d1/5bdc847e1ca86e6ebf832911_social-06.svg" width="20" alt="" /></a>
+                        <a href="#" class="social-icon-link w-inline-block"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+                        <a href="#" class="social-icon-link w-inline-block"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+                        <a href="#" class="social-icon-link w-inline-block"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
+                        <a href="#" class="social-icon-link w-inline-block"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="w-col w-col-3"></div>
@@ -148,5 +152,5 @@
         </div>
     </div>
 </body>
-<script src="/js/candidateProfile.js"></script>
+<script type="text/javascript" src="/js/candidateProfile.js"></script>
 </html>
