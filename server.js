@@ -114,8 +114,9 @@ app.get('/fetchclubs', fetchClubInfo, (req, res) => {
   });
 })
 
-app.post('/statusChange', fetchClubInfo, (req, res) => {
+app.post('/statusChange', (req, res) => {                                           // NEED TO ADD MIDDLEWARE
   //Query to update status Change
+  console.log('Inside Status Change');
   Candidates.findOneAndUpdate({
     rollNumber: req.body.rollNumber,
     club: req.body.club
@@ -126,7 +127,7 @@ app.post('/statusChange', fetchClubInfo, (req, res) => {
   });
 });
 
-app.post('/scoreChange', fetchClubInfo, (req, res) => {
+app.post('/scoreChange', (req, res) => {                                           // NEED TO ADD MIDDLEWARE
   Candidates.findOneAndUpdate({
     rollNumber: req.body.rollNumber,
     club: req.body.club

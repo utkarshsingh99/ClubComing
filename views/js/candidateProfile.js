@@ -21,7 +21,9 @@ jQuery('.feature-column').on('click', function () {
     club,
     rollNumber,
     candidateStatus: status
-  },()=>{window.location.href = '/dashboard'});
+  }, (d) => {
+    console.log(`Success: ${d}`);
+  });
 });
 
 
@@ -71,7 +73,7 @@ jQuery.get('/fetchclubs', {rollNumber}, function (clubs) {
 
   console.log('Real Info of Clubs: ', clubs);
   clubs.forEach(function (club) {
-    var string = 
+    var string =
     `
     <div class="row">
     <div class="left">
