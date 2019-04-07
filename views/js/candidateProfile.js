@@ -15,7 +15,7 @@ jQuery('.feature-column').on('click', function () {
   var choice = jQuery(this);
   var status = toTitleCase(choice[0].id)+'ed';
   jQuery('.feature-column').css("border", "none");
-  choice.css('border','2px '+colorLookup[choice[0].id]+' solid');
+  choice.css('border','2px ' + colorLookup[choice[0].id]+' solid');
   console.log(status);
   jQuery.post('/statusChange', {
     club,

@@ -25,7 +25,9 @@ var authenticate = (req, res, next) => {
     name: req.body.name,
     password: req.body.password
   };
+  console.log(user1.name)
   Club.findOne({name: user1.name}).then((user) => {
+    console.log(user1, user)
   var verifyPass = bcrypt.compare(user1.password, user.password, (err, res) => {
     var token = generateAuthToken(user);
     if(res) {

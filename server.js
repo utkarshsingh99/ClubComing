@@ -117,6 +117,7 @@ app.get('/fetchclubs', fetchClubInfo, (req, res) => {
 app.post('/statusChange', (req, res) => {                                           // NEED TO ADD MIDDLEWARE
   //Query to update status Change
   console.log('Inside Status Change');
+  req.body.club = req.body.club.toLowerCase()
   Candidates.findOneAndUpdate({
     rollNumber: req.body.rollNumber,
     club: req.body.club
